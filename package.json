@@ -1,0 +1,15 @@
+{
+  "name": "findish",
+  "version": "1.0.0",
+  "description": "find, share, add recipe",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "author": "Matin Taherzadeh",
+  "license": "ISC",
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.12.0",
+    "parcel": "^2.0.0"
+  }
+}
