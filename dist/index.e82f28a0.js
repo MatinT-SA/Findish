@@ -588,16 +588,27 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 var _iconsSvg = require("url:../img/icons.svg");
 var _iconsSvgDefault = parcelHelpers.interopDefault(_iconsSvg);
 const recipeContainer = document.querySelector(".recipe");
-const timeout = function(s) {
-    return new Promise(function(_, reject) {
-        setTimeout(function() {
-            reject(new Error(`Request took too long! Timeout after ${s} second`));
-        }, s * 1000);
-    });
+// const timeout = function (s) {
+//     return new Promise(function (_, reject) {
+//         setTimeout(function () {
+//             reject(new Error(`Request took too long! Timeout after ${s} second`));
+//         }, s * 1000);
+//     });
+// };
+const renderSpinner = function(parentEl) {
+    const markup = `
+        <div class="spinner">
+          <svg>
+            <use href="${(0, _iconsSvgDefault.default)}#icon-loader"></use>
+          </svg>
+        </div>
+    `;
+    parentEl.insertAdjacentHTML("afterbegin", markup);
 };
 const showRecipe = async function() {
     try {
         // 1) Loading recipe
+        renderSpinner(recipeContainer);
         const res = await fetch("https://forkify-api.herokuapp.com/api/v2/recipes/5ed6604591c37cdc054bc886");
         const data = await res.json();
         if (!res.ok) throw new Error(`${data.message} (${res.status})`);
