@@ -1864,15 +1864,14 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "state", ()=>state);
 parcelHelpers.export(exports, "loadRecipe", ()=>loadRecipe);
-var _configJS = require("./config.JS");
+var _configJs = require("./config.js");
+var _helpersJs = require("./helpers.js");
 const state = {
     recipe: {}
 };
 const loadRecipe = async function(id) {
     try {
-        const res = await fetch(`${(0, _configJS.API_URL)}/${id}`);
-        const data = await res.json();
-        if (!res.ok) throw new Error(`${data.message} (${res.status})`);
+        const data = await (0, _helpersJs.getJSON)(`${(0, _configJs.API_URL)}/${id}`);
         const { recipe } = data.data;
         state.recipe = {
             id: recipe.id,
@@ -1885,11 +1884,11 @@ const loadRecipe = async function(id) {
             ingredients: recipe.ingredients
         };
     } catch (error) {
-        alert(error.message);
+        console.error(`${error} \u{1F6D1}`);
     }
 };
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./config.JS":"2f9iU"}],"gkKU3":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./config.js":"k5Hzs","./helpers.js":"hGI1E"}],"gkKU3":[function(require,module,exports) {
 exports.interopDefault = function(a) {
     return a && a.__esModule ? a : {
         default: a
@@ -1919,11 +1918,26 @@ exports.export = function(dest, destName, get) {
     });
 };
 
-},{}],"2f9iU":[function(require,module,exports) {
+},{}],"k5Hzs":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "API_URL", ()=>API_URL);
 const API_URL = "https://forkify-api.herokuapp.com/api/v2/recipes";
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"hGI1E":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "getJSON", ()=>getJSON);
+const getJSON = async function(url) {
+    try {
+        const res = await fetch(url);
+        const data = await res.json();
+        if (!res.ok) throw new Error(`${data.message} (${res.status})`);
+        return data;
+    } catch (error) {
+        throw error;
+    }
+};
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"l60JC":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
