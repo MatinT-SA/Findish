@@ -1,13 +1,8 @@
 import * as model from './model.js';
 import recipeView from './views/recipeView.js';
 
-
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
-
-const recipeContainer = document.querySelector('.recipe');
-
-
 
 const controlRecipes = async function () {
     try {
@@ -23,7 +18,7 @@ const controlRecipes = async function () {
         recipeView.render(model.state.recipe);
 
     } catch (err) {
-        alert(err.message);
+        recipeView.renderError();
     }
 };
 
