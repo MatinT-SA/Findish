@@ -591,7 +591,7 @@ var _recipeViewJs = require("./views/recipeView.js");
 var _recipeViewJsDefault = parcelHelpers.interopDefault(_recipeViewJs);
 var _runtime = require("regenerator-runtime/runtime");
 const recipeContainer = document.querySelector(".recipe");
-const controlRecipe = async function() {
+const controlRecipes = async function() {
     try {
         const id = window.location.hash.slice(1);
         if (!id) return;
@@ -605,8 +605,10 @@ const controlRecipe = async function() {
     }
 };
 // Event Listeners
-window.addEventListener("hashchange", controlRecipe);
-window.addEventListener("load", controlRecipe);
+const init = function() {
+    (0, _recipeViewJsDefault.default).addHandleRender(controlRecipes);
+};
+init();
 
 },{"core-js/modules/web.immediate.js":"49tUX","./model.js":"Y4A21","./views/recipeView.js":"l60JC","regenerator-runtime/runtime":"dXNgZ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"49tUX":[function(require,module,exports) {
 "use strict";
@@ -1981,6 +1983,12 @@ class RecipeView {
         this.#parentElement.innerHTML = "";
         this.#parentElement.insertAdjacentHTML("afterbegin", markup);
     };
+    addHandleRender(handler) {
+        [
+            "hashchange",
+            "load"
+        ].forEach((ev)=>window.addEventListener(ev, handler));
+    }
     #generateMarkup() {
         return `
             <figure class="recipe__fig">
