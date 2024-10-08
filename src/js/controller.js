@@ -22,7 +22,15 @@ const controlRecipes = async function () {
     }
 };
 
-// Event Listeners
+const controlSearchResults = async function () {
+    try {
+        await model.loadSearchResults('pizza');
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+controlSearchResults();
 
 const init = function () {
     recipeView.addHandleRender(controlRecipes);

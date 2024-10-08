@@ -38,10 +38,10 @@ export const loadSearchResults = async function (query) {
 
         state.search.results = data.data.recipes.map(rec => {
             return {
-                id: recipe.id,
-                title: recipe.title,
-                publisher: recipe.publisher,
-                image: recipe.image_url,
+                id: rec.id,
+                title: rec.title,
+                publisher: rec.publisher,
+                image: rec.image_url,
             }
         })
     } catch (error) {
@@ -49,5 +49,3 @@ export const loadSearchResults = async function (query) {
         throw error;
     }
 }
-
-loadSearchResults('pizza');
