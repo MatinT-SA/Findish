@@ -3,6 +3,8 @@ import View from "./View.js";
 
 class ResultsView extends View {
     _parentElement = document.querySelector('.results');
+    _errorMessage = 'Couldn\'t find the recipe you\'re looking for';
+    _successMessage = '';
 
     _generateMarkup() {
         return this._data.map(this._generateMarkupPreview).join('');
