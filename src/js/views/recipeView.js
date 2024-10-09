@@ -19,6 +19,7 @@ class RecipeView extends View {
                     <span>${this._data.title}</span>
                 </h1>
             </figure>
+
             <div class="recipe__details">
                 <div class="recipe__info">
                     <svg class="recipe__info-icon">
@@ -35,6 +36,23 @@ class RecipeView extends View {
                     <span class="recipe__info-text">servings</span>
                 </div>
             </div>
+
+            <div class="recipe__info-buttons">
+                <button class="btn--tiny btn--increase-servings">
+                    <svg>
+                        <use href="${icons}#icon-minus-circle"></use>
+                    </svg>
+                </button>
+                <button class="btn--tiny btn--increase-servings">
+                    <svg>
+                        <use href="${icons}#icon-plus-circle"></use>
+                    </svg>
+                </button>
+            </div>
+
+            <div class="recipe__user-generated">
+            </div>
+
             <div class="recipe__ingredients">
                 <h2 class="heading--2">Recipe ingredients</h2>
                 <ul class="recipe__ingredient-list">
@@ -52,6 +70,7 @@ class RecipeView extends View {
                     `).join('')}
                 </ul>
             </div>
+            
             <div class="recipe__directions">
                 <h2 class="heading--2">How to cook it</h2>
                 <p class="recipe__directions-text">

@@ -613,7 +613,6 @@ const controlSearchResults = async function() {
         const query = (0, _searchViewJsDefault.default).getQuery();
         if (!query) return;
         await _modelJs.loadSearchResults(query);
-        console.log(_modelJs.state.search.results);
         (0, _resultsViewJsDefault.default).render(_modelJs.state.search.results);
     } catch (error) {
         console.log(error);
@@ -2019,6 +2018,7 @@ class RecipeView extends (0, _viewDefault.default) {
                     <span>${this._data.title}</span>
                 </h1>
             </figure>
+
             <div class="recipe__details">
                 <div class="recipe__info">
                     <svg class="recipe__info-icon">
@@ -2035,6 +2035,23 @@ class RecipeView extends (0, _viewDefault.default) {
                     <span class="recipe__info-text">servings</span>
                 </div>
             </div>
+
+            <div class="recipe__info-buttons">
+                <button class="btn--tiny btn--increase-servings">
+                    <svg>
+                        <use href="${0, _iconsSvgDefault.default}#icon-minus-circle"></use>
+                    </svg>
+                </button>
+                <button class="btn--tiny btn--increase-servings">
+                    <svg>
+                        <use href="${0, _iconsSvgDefault.default}#icon-plus-circle"></use>
+                    </svg>
+                </button>
+            </div>
+
+            <div class="recipe__user-generated">
+            </div>
+
             <div class="recipe__ingredients">
                 <h2 class="heading--2">Recipe ingredients</h2>
                 <ul class="recipe__ingredient-list">
@@ -2052,6 +2069,7 @@ class RecipeView extends (0, _viewDefault.default) {
                     `).join("")}
                 </ul>
             </div>
+            
             <div class="recipe__directions">
                 <h2 class="heading--2">How to cook it</h2>
                 <p class="recipe__directions-text">
@@ -3042,18 +3060,13 @@ class ResultsView extends (0, _viewJsDefault.default) {
     _generateMarkupPreview(result) {
         return `
         <li class="preview">
-            <a class="preview__link preview__link--active" href="#${result.id}">
+            <a class="preview__link" href="#${result.id}">
             <figure class="preview__fig">
                 <img src="${result.image}" alt="${result.title}" />
             </figure>
             <div class="preview__data">
                 <h4 class="preview__title">${result.title}</h4>
                 <p class="preview__publisher">${result.publisher}</p>
-                <div class="preview__user-generated">
-                <svg>
-                    <use href="${0, _iconsSvgDefault.default}#icon-user"></use>
-                </svg>
-                </div>
             </div>
             </a>
         </li>
