@@ -3109,22 +3109,45 @@ var _iconsSvg = require("url:../../img/icons.svg");
 var _iconsSvgDefault = parcelHelpers.interopDefault(_iconsSvg);
 var _viewJs = require("./View.js");
 var _viewJsDefault = parcelHelpers.interopDefault(_viewJs);
-class paginationView extends (0, _viewJsDefault.default) {
+class PaginationView extends (0, _viewJsDefault.default) {
     _parentElement = document.querySelector(".pagination");
     _generateMarkup() {
+        const curPage = this._data.page;
         const numPages = Math.ceil(this._data.results.length / this._data.resultsPerPage);
-        console.log(numPages);
-        // page 1, and there are other pages
-        if (this._data.page === 1 && numPages > 1) return "page 1, others";
-        // last page
-        if (this._data.page === numPages && numPages > 1) return "last page";
-        // other page
-        if (this._data.page < numPages) return "other page";
-        // page 1, and there are no other pages
-        return "only 1 page";
+        // Page 1 and there are other pages
+        if (curPage === 1 && numPages > 1) return this._generateMarkupNextButton(curPage);
+        // Last page
+        if (curPage === numPages && numPages > 1) return this._generateMarkupPrevButton(curPage);
+        // Other pages
+        if (curPage < numPages) return `
+        ${this._generateMarkupPrevButton(curPage)}
+        ${this._generateMarkupNextButton(curPage)}
+      `;
+        // Page 1, and no other pages
+        return "";
+    }
+    _generateMarkupPrevButton(curPage) {
+        return `
+            <button class="btn--inline pagination__btn--prev">
+                <svg class="search__icon">
+                <use href="${0, _iconsSvgDefault.default}#icon-arrow-left"></use>
+                </svg>
+                <span>Page ${curPage - 1}</span>
+            </button>
+    `;
+    }
+    _generateMarkupNextButton(curPage) {
+        return `
+            <button class="btn--inline pagination__btn--next">
+                <span>Page ${curPage + 1}</span>
+                <svg class="search__icon">
+                <use href="${0, _iconsSvgDefault.default}#icon-arrow-right"></use>
+                </svg>
+            </button>
+    `;
     }
 }
-exports.default = new paginationView();
+exports.default = new PaginationView();
 
 },{"url:../../img/icons.svg":"loVOp","./View.js":"5cUXS","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["hycaY","aenu9"], "aenu9", "parcelRequire0005")
 
