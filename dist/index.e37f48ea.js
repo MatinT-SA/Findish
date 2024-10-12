@@ -605,7 +605,6 @@ const controlRecipes = async function() {
         await _modelJs.loadRecipe(id);
         // 2) Rendering recipe
         (0, _recipeViewJsDefault.default).render(_modelJs.state.recipe);
-        controlServings();
     } catch (err) {
         (0, _recipeViewJsDefault.default).renderError();
     }
@@ -640,6 +639,7 @@ const controlServings = function() {
 };
 const init = function() {
     (0, _recipeViewJsDefault.default).addHandleRender(controlRecipes);
+    (0, _recipeViewJsDefault.default).addHandlderUpdateServing(controlServings);
     (0, _searchViewJsDefault.default).addHandlerSearch(controlSearchResults);
     (0, _paginationViewJsDefault.default).addHanlderClick(controlPagination);
 };
@@ -2047,6 +2047,14 @@ class RecipeView extends (0, _viewDefault.default) {
             "hashchange",
             "load"
         ].forEach((ev)=>window.addEventListener(ev, handler));
+    }
+    addHandlderUpdateServing(handler) {
+        this._parentElement.addEventListener("click", function(e) {
+            const btn = e.target.closest(".btn--tiny");
+            if (!btn) return;
+            handler();
+            console.log(btn);
+        });
     }
     _generateMarkup() {
         return `
