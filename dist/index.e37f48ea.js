@@ -601,6 +601,8 @@ const controlRecipes = async function() {
         const id = window.location.hash.slice(1);
         if (!id) return;
         (0, _recipeViewJsDefault.default).renderSpinner();
+        // updating results view to mark selected search result
+        (0, _resultsViewJsDefault.default).update(_modelJs.getSearchResultsPage());
         // 1) loading recipe
         await _modelJs.loadRecipe(id);
         // 2) Rendering recipe
@@ -635,7 +637,6 @@ const controlServings = function(newServings) {
     // update the recipe servings
     _modelJs.updateServings(newServings);
     // update the recipe view
-    // recipeView.render(model.state.recipe);
     (0, _recipeViewJsDefault.default).update(_modelJs.state.recipe);
 };
 const init = function() {
@@ -2061,7 +2062,7 @@ class RecipeView extends (0, _viewDefault.default) {
     _generateMarkup() {
         return `
             <figure class="recipe__fig">
-                <img src="${this._data.image_url}" alt="${this._data.title}" class="recipe__img" />
+                <img src="${this._data.image}" alt="${this._data.title}" class="recipe__img" />
                 <h1 class="recipe__title">
                     <span>${this._data.title}</span>
                 </h1>
@@ -2449,12 +2450,23 @@ class View {
         this._parentElement.insertAdjacentHTML("afterbegin", markup);
     }
     update(data) {
-        if (!data || Array.isArray(data) && data.length === 0) return this.renderError();
+        // if (!data || Array.isArray(data) && data.length === 0) return this.renderError();
         this._data = data;
         const newMarkup = this._generateMarkup();
         const newDOM = document.createRange().createContextualFragment(newMarkup);
-        const newElements = newDOM.querySelectorAll("*");
-        console.log(newElements);
+        const newElements = Array.from(newDOM.querySelectorAll("*"));
+        const curElements = Array.from(this._parentElement.querySelectorAll("*"));
+        newElements.forEach((newEl, i)=>{
+            const curEl = curElements[i];
+            console.log(curEl, newEl.isEqualNode(curEl));
+            // update changed text
+            if (!newEl.isEqualNode(curEl) && newEl.firstChild?.nodeValue.trim() !== "") {
+                console.log("\uD83D\uDCA5", newEl.firstChild.nodeValue.trim());
+                curEl.textContent = newEl.textContent;
+            }
+            // update changed attributes
+            if (!newEl.isEqualNode(curEl)) Array.from(newEl.attributes).forEach((attr)=>curEl.setAttribute(attr.name, attr.value));
+        });
     }
     _clear() {
         this._parentElement.innerHTML = "";
@@ -3123,9 +3135,10 @@ class ResultsView extends (0, _viewJsDefault.default) {
         return this._data.map(this._generateMarkupPreview).join("");
     }
     _generateMarkupPreview(result) {
+        const id = window.location.hash.slice(1);
         return `
         <li class="preview">
-            <a class="preview__link" href="#${result.id}">
+            <a class="preview__link ${result.id === id ? "preview__link--active" : ""}" href="#${result.id}">
             <figure class="preview__fig">
                 <img src="${result.image}" alt="${result.title}" />
             </figure>
