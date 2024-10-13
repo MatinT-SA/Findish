@@ -1948,6 +1948,7 @@ const loadSearchResults = async function(query) {
                 image: rec.image_url
             };
         });
+        state.search.page = 1;
     } catch (error) {
         console.error(`${error} \u{1F6D1}`);
         throw error;

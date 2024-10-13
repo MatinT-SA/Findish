@@ -45,7 +45,9 @@ export const loadSearchResults = async function (query) {
                 publisher: rec.publisher,
                 image: rec.image_url,
             }
-        })
+        });
+
+        state.search.page = 1;
     } catch (error) {
         console.error(`${error} 🛑`);
         throw error;
