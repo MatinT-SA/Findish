@@ -2453,11 +2453,18 @@ class View {
         this._data = data;
         const newMarkup = this._generateMarkup();
         const newDOM = document.createRange().createContextualFragment(newMarkup);
-        const newElements = newDOM.querySelectorAll("*");
-        const curElements = this._parentElement.querySelectorAll("*");
+        const newElements = Array.from(newDOM.querySelectorAll("*"));
+        const curElements = Array.from(this._parentElement.querySelectorAll("*"));
         newElements.forEach((newEl, i)=>{
             const curEl = curElements[i];
             console.log(curEl, newEl.isEqualNode(curEl));
+            // update changed text
+            if (!newEl.isEqualNode(curEl) && newEl.firstChild?.nodeValue.trim() !== "") {
+                console.log("\uD83D\uDCA5", newEl.firstChild.nodeValue.trim());
+                curEl.textContent = newEl.textContent;
+            }
+            // update changed attributes
+            if (!newEl.isEqualNode(curEl)) Array.from(newEl.attributes).forEach((attr)=>curEl.setAttribute(attr.name, attr.value));
         });
     }
     _clear() {

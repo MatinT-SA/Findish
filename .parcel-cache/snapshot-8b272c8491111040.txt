@@ -1,13 +1,13 @@
 9711
 96D:\Programming\projects\Findish\node_modules\lmdb\dependencies\lmdb\libraries\liblmdb\mdb_copy.1133723505473770746 0
 72D:\Programming\projects\Findish\node_modules\core-js\actual\map\index.js133723505588649543 0
-58D:\Programming\projects\Findish\dist\index.e37f48ea.js.map133733048371674941 0
+58D:\Programming\projects\Findish\dist\index.e37f48ea.js.map133733067127194753 0
 62D:\Programming\projects\Findish\node_modules\core-js\es\string133723505611148998 1
 81D:\Programming\projects\Findish\node_modules\core-js\modules\es.string.replace.js133723505556186076 0
 72D:\Programming\projects\Findish\node_modules\svgo\plugins\removeAttrs.js133723505563277533 0
 99D:\Programming\projects\Findish\node_modules\msgpackr-extract\node_modules\detect-libc\package.json133723505475013899 0
 77D:\Programming\projects\Findish\node_modules\@swc\helpers\esm\_ts_decorate.js133723505532351264 0
-54D:\Programming\projects\Findish\dist\index.e37f48ea.js133733048371625102 0
+54D:\Programming\projects\Findish\dist\index.e37f48ea.js133733067127174795 0
 79D:\Programming\projects\Findish\node_modules\core-js\features\map\map-values.js133723505594622469 0
 88D:\Programming\projects\Findish\node_modules\css-tree\lib\syntax\node\NestingSelector.js133723505519632912 0
 65D:\Programming\projects\Findish\node_modules\fractional\README.md133724512617628608 0
@@ -16,7 +16,7 @@
 81D:\Programming\projects\Findish\node_modules\core-js\modules\esnext.math.iaddh.js133723505560978419 0
 92D:\Programming\projects\Findish\node_modules\@swc\helpers\esm\_class_private_field_update.js133723505527196175 0
 67D:\Programming\projects\Findish\node_modules\css-tree\cjs\index.cjs133723505475373294 0
-36D:\Programming\projects\Findish\dist133733048371684929 1
+36D:\Programming\projects\Findish\dist133733067127194753 1
 113D:\Programming\projects\Findish\node_modules\csso\node_modules\css-tree\cjs\syntax\node\PseudoElementSelector.cjs133723505528344992 0
 79D:\Programming\projects\Findish\node_modules\core-js\actual\typed-array\some.js133723505605713126 0
 101D:\Programming\projects\Findish\node_modules\@swc\helpers\_\_is_native_reflect_construct\package.json133723505488108979 0
@@ -192,7 +192,7 @@
 81D:\Programming\projects\Findish\node_modules\core-js\features\typed-array\from.js133723505584189021 0
 92D:\Programming\projects\Findish\node_modules\@swc\helpers\_\_object_without_properties_loose133723505491345225 1
 125D:\Programming\projects\Findish\node_modules\@parcel\optimizer-svgo\node_modules\css-tree\lib\syntax\pseudo\nth-last-child.js133723505532819845 0
-52D:\Programming\projects\Findish\src\js\views\View.js133733048075413065 0
+52D:\Programming\projects\Findish\src\js\views\View.js133733067121597578 0
 89D:\Programming\projects\Findish\node_modules\core-js\modules\esnext.async-iterator.map.js133723505559392681 0
 84D:\Programming\projects\Findish\node_modules\core-js\actual\string\to-well-formed.js133723505610400996 0
 63D:\Programming\projects\Findish\node_modules\get-port\readme.md133723505618040784 0
@@ -1694,7 +1694,7 @@
 133D:\Programming\projects\Findish\node_modules\@parcel\optimizer-htmlnano\node_modules\css-select\lib\pseudo-selectors\pseudos.d.ts.map133723505483596146 0
 71D:\Programming\projects\Findish\node_modules\mdn-data\css\syntaxes.json133723505456388997 0
 68D:\Programming\projects\Findish\node_modules\csso\lib\clean\utils.js133723505474677832 0
-59D:\Programming\projects\Findish\dist\index.f7626f62.css.map133732137707631014 0
+59D:\Programming\projects\Findish\dist\index.f7626f62.css.map133733067126995282 0
 102D:\Programming\projects\Findish\node_modules\@swc\helpers\src\_class_static_private_field_spec_get.mjs133723505535032980 0
 74D:\Programming\projects\Findish\node_modules\@lmdb\lmdb-win32-x64\index.js133723505482142955 0
 70D:\Programming\projects\Findish\node_modules\source-map-js\lib\util.js133723505551476896 0
@@ -4541,7 +4541,7 @@
 100D:\Programming\projects\Findish\node_modules\css-select\node_modules\domutils\lib\stringify.d.ts.map133723505530314511 0
 94D:\Programming\projects\Findish\node_modules\css-select\node_modules\domutils\lib\stringify.js133723505526946811 0
 75D:\Programming\projects\Findish\node_modules\core-js\es\typed-array\sort.js133723505606281582 0
-55D:\Programming\projects\Findish\dist\index.f7626f62.css133732137707611090 0
+55D:\Programming\projects\Findish\dist\index.f7626f62.css133733067126978432 0
 98D:\Programming\projects\Findish\node_modules\css-select\node_modules\domutils\lib\stringify.js.map133723505530464117 0
 72D:\Programming\projects\Findish\node_modules\core-js\full\error\index.js133723505589515764 0
 64D:\Programming\projects\Findish\node_modules\core-js\full\bigint133723505600207323 1
@@ -6015,7 +6015,7 @@
 80D:\Programming\projects\Findish\node_modules\core-js\full\async-disposable-stack133723505589465791 1
 85D:\Programming\projects\Findish\node_modules\core-js\actual\object\define-property.js133723505539677029 0
 65D:\Programming\projects\Findish\node_modules\core-js\full\atob.js133723505535402660 0
-62D:\Programming\projects\Findish\dist\findish-logo.6ba6f2e6.png133732137707521316 0
+62D:\Programming\projects\Findish\dist\findish-logo.6ba6f2e6.png133733067127085084 0
 76D:\Programming\projects\Findish\node_modules\core-js\full\clear-immediate.js133723505536968460 0
 74D:\Programming\projects\Findish\node_modules\core-js\full\composite-key.js133723505537647806 0
 76D:\Programming\projects\Findish\node_modules\caniuse-lite\data\regions\AE.js133724512621094014 0
@@ -9030,7 +9030,7 @@
 105D:\Programming\projects\Findish\node_modules\@parcel\optimizer-svgo\node_modules\csso\lib\clean\Atrule.js133723505485335862 0
 110D:\Programming\projects\Findish\node_modules\@parcel\optimizer-svgo\node_modules\csso\lib\clean\Declaration.js133723505514997898 0
 104D:\Programming\projects\Findish\node_modules\@parcel\optimizer-svgo\node_modules\csso\lib\clean\index.js133723505517959571 0
-55D:\Programming\projects\Findish\dist\icons.dfd7a6db.svg133732137707541259 0
+55D:\Programming\projects\Findish\dist\icons.dfd7a6db.svg133733067126898887 0
 64D:\Programming\projects\Findish\node_modules\@parcel\events\test133723505473364143 1
 111D:\Programming\projects\Findish\node_modules\@parcel\optimizer-svgo\node_modules\csso\lib\clean\TypeSelector.js133723505520001923 0
 109D:\Programming\projects\Findish\node_modules\@parcel\optimizer-svgo\node_modules\csso\lib\clean\WhiteSpace.js133723505521608560 0
@@ -9705,8 +9705,8 @@
 54D:\Programming\projects\Findish\node_modules\.bin\svgo133723506231489357 0
 58D:\Programming\projects\Findish\node_modules\.bin\svgo.cmd133723506231489357 0
 72D:\Programming\projects\Findish\node_modules\.bin\update-browserslist-db133723506231489357 0
-62D:\Programming\projects\Findish\dist\findish-logo.9450848d.ico133732137706464134 0
 56D:\Programming\projects\Findish\dist\Findish.3464ddca.js133721062284250819 0
 58D:\Programming\projects\Findish\dist\index.e82f28a0.js.map133723531781293406 0
-47D:\Programming\projects\Findish\dist\index.html133732137707601127 0
 53D:\Programming\projects\Findish\.vscode\settings.json133720260679250455 0
+62D:\Programming\projects\Findish\dist\findish-logo.9450848d.ico133733067126908854 0
+47D:\Programming\projects\Findish\dist\index.html133733067127165136 0
