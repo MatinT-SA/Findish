@@ -639,9 +639,14 @@ const controlServings = function(newServings) {
     // update the recipe view
     (0, _recipeViewJsDefault.default).update(_modelJs.state.recipe);
 };
+const controlAddBookmark = function() {
+    _modelJs.addBookmark(_modelJs.state.recipe);
+    (0, _recipeViewJsDefault.default).update(_modelJs.state.recipe);
+};
 const init = function() {
     (0, _recipeViewJsDefault.default).addHandleRender(controlRecipes);
     (0, _recipeViewJsDefault.default).addHandlderUpdateServing(controlServings);
+    (0, _recipeViewJsDefault.default).addHandlerAddBookmark(controlAddBookmark);
     (0, _searchViewJsDefault.default).addHandlerSearch(controlSearchResults);
     (0, _paginationViewJsDefault.default).addHanlderClick(controlPagination);
 };
@@ -1906,6 +1911,7 @@ parcelHelpers.export(exports, "loadRecipe", ()=>loadRecipe);
 parcelHelpers.export(exports, "loadSearchResults", ()=>loadSearchResults);
 parcelHelpers.export(exports, "getSearchResultsPage", ()=>getSearchResultsPage);
 parcelHelpers.export(exports, "updateServings", ()=>updateServings);
+parcelHelpers.export(exports, "addBookmark", ()=>addBookmark);
 var _configJs = require("./config.js");
 var _helpersJs = require("./helpers.js");
 const state = {
@@ -1915,7 +1921,8 @@ const state = {
         results: [],
         resultsPerPage: (0, _configJs.RES_PER_PAGE),
         page: 1
-    }
+    },
+    bookmarks: []
 };
 const loadRecipe = async function(id) {
     try {
@@ -1965,6 +1972,12 @@ const updateServings = function(newServings) {
         ing.quantity = ing.quantity * newServings / state.recipe.servings;
     });
     state.recipe.servings = newServings;
+};
+const addBookmark = function(recipe) {
+    // add bookmark
+    state.bookmarks.push(recipe);
+    // mark current recipe as bookmark
+    if (recipe.id === state.recipe.id) state.recipe.bookmarked = true;
 };
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./config.js":"k5Hzs","./helpers.js":"hGI1E"}],"gkKU3":[function(require,module,exports) {
@@ -2055,9 +2068,15 @@ class RecipeView extends (0, _viewDefault.default) {
         this._parentElement.addEventListener("click", function(e) {
             const btn = e.target.closest(".btn--update-servings");
             if (!btn) return;
-            console.log(btn);
             const { updateTo } = btn.dataset;
             if (+updateTo > 0) handler(+updateTo);
+        });
+    }
+    addHandlerAddBookmark(handler) {
+        this._parentElement.addEventListener("click", function(e) {
+            const btn = e.target.closest(".btn--bookmark");
+            if (!btn) return;
+            handler();
         });
     }
     _generateMarkup() {
@@ -2103,7 +2122,7 @@ class RecipeView extends (0, _viewDefault.default) {
                 </div>
                 <button class="btn--round btn--bookmark">
                     <svg class="">
-                        <use href="${0, _iconsSvgDefault.default}#icon-bookmark-fill"></use>
+                        <use href="${0, _iconsSvgDefault.default}#icon-bookmark${this._data.bookmarked ? "-fill" : ""}"></use>
                     </svg>
                 </button>
             </div>
@@ -2459,12 +2478,8 @@ class View {
         const curElements = Array.from(this._parentElement.querySelectorAll("*"));
         newElements.forEach((newEl, i)=>{
             const curEl = curElements[i];
-            console.log(curEl, newEl.isEqualNode(curEl));
             // update changed text
-            if (!newEl.isEqualNode(curEl) && newEl.firstChild?.nodeValue.trim() !== "") {
-                console.log("\uD83D\uDCA5", newEl.firstChild.nodeValue.trim());
-                curEl.textContent = newEl.textContent;
-            }
+            if (!newEl.isEqualNode(curEl) && newEl.firstChild?.nodeValue.trim() !== "") curEl.textContent = newEl.textContent;
             // update changed attributes
             if (!newEl.isEqualNode(curEl)) Array.from(newEl.attributes).forEach((attr)=>curEl.setAttribute(attr.name, attr.value));
         });
