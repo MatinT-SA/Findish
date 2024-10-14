@@ -640,7 +640,7 @@ const controlServings = function(newServings) {
     (0, _recipeViewJsDefault.default).update(_modelJs.state.recipe);
 };
 const controlAddBookmark = function() {
-    _modelJs.addBookmark(_modelJs.state.recipe);
+    _modelJs.state.recipe.bookmarked ? _modelJs.removeBookmark(_modelJs.state.recipe.id) : _modelJs.addBookmark(_modelJs.state.recipe);
     (0, _recipeViewJsDefault.default).update(_modelJs.state.recipe);
 };
 const init = function() {
@@ -1912,6 +1912,7 @@ parcelHelpers.export(exports, "loadSearchResults", ()=>loadSearchResults);
 parcelHelpers.export(exports, "getSearchResultsPage", ()=>getSearchResultsPage);
 parcelHelpers.export(exports, "updateServings", ()=>updateServings);
 parcelHelpers.export(exports, "addBookmark", ()=>addBookmark);
+parcelHelpers.export(exports, "removeBookmark", ()=>removeBookmark);
 var _configJs = require("./config.js");
 var _helpersJs = require("./helpers.js");
 const state = {
@@ -1938,6 +1939,8 @@ const loadRecipe = async function(id) {
             cookingTime: recipe.cooking_time,
             ingredients: recipe.ingredients
         };
+        if (state.bookmarks.some((bookmark)=>bookmark.id === id)) state.recipe.bookmarked = true;
+        else state.recipe.bookmarked = false;
     } catch (error) {
         console.error(`${error} \u{1F6D1}`);
         throw error;
@@ -1978,6 +1981,13 @@ const addBookmark = function(recipe) {
     state.bookmarks.push(recipe);
     // mark current recipe as bookmark
     if (recipe.id === state.recipe.id) state.recipe.bookmarked = true;
+};
+const removeBookmark = function(id) {
+    // remove bookmark
+    const index = state.bookmarks.findIndex((el)=>el.id === id);
+    state.bookmarks.splice(index, 1);
+    // unmark current recipe as bookmark
+    if (id === state.recipe.id) state.recipe.bookmarked = false;
 };
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./config.js":"k5Hzs","./helpers.js":"hGI1E"}],"gkKU3":[function(require,module,exports) {
