@@ -3308,6 +3308,7 @@ class AddRecipeView extends (0, _viewJsDefault.default) {
     constructor(){
         super();
         this._addHandlerShowWindow();
+        this._addHandlerHideWindow();
     }
     _toggleWindow() {
         this._overlay.classList.toggle("hidden");
@@ -3315,6 +3316,10 @@ class AddRecipeView extends (0, _viewJsDefault.default) {
     }
     _addHandlerShowWindow() {
         this._btnOpen.addEventListener("click", this._toggleWindow.bind(this));
+    }
+    _addHandlerHideWindow() {
+        this._btnClose.addEventListener("click", this._toggleWindow.bind(this));
+        this._overlay.addEventListener("click", this._toggleWindow.bind(this));
     }
     _generateMarkup() {}
 }
