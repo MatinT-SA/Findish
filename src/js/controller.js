@@ -15,6 +15,7 @@ const controlRecipes = async function () {
         const id = window.location.hash.slice(1);
         if (!id) return;
 
+        // Render spinner
         recipeView.renderSpinner();
 
         // updating results view to mark selected search result
