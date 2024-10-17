@@ -6,6 +6,11 @@ class BookmarkView extends View {
     _errorMessage = 'No bookmarks yet! Find a nice recipe and bookmark it';
     _successMessage = '';
 
+    /**
+     * 
+     * @param {function(): void} handler The function to be executed when the page is fully loaded
+     */
+
     addHandlerBookmarks(handler) {
         window.addEventListener('load', handler);
     }
