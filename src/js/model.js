@@ -1,6 +1,5 @@
 import { API_URL, RES_PER_PAGE, API_KEY } from "./config.js";
 import { AJAX } from "./helpers.js";
-import { Fraction } from 'fractional';
 
 export const state = {
     recipe: {},
