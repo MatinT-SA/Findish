@@ -791,4 +791,92 @@ body {
   grid-column: 1 / -1;
   justify-self: center;
 }
+
+.alert {
+  border-radius: 8px;
+  align-items: center;
+  margin: 1.6rem 0;
+  padding: .5rem 1rem;
+  animation: .3s ease-in-out fadeIn;
+  display: flex;
+  position: relative;
+}
+
+.alert-icon {
+  flex-shrink: 0;
+  margin-right: 12px;
+}
+
+.alert-icon svg {
+  fill: inherit;
+  width: 3rem;
+  height: 3rem;
+}
+
+.alert-content {
+  color: #1e1e1e;
+  flex-grow: 1;
+  font-size: 1.3rem;
+}
+
+.alert.alert-error svg {
+  fill: red;
+}
+
+.alert.alert-success svg {
+  fill: green;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.popup {
+  z-index: 9999;
+  opacity: 1;
+  border-radius: 6px;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  transition: all .3s;
+  display: flex;
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+  box-shadow: 0 4px 8px #0000001a;
+}
+
+.popup-icon {
+  margin-right: 1rem;
+}
+
+.popup-icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.popup-message {
+  color: #fff;
+  font-size: 1.4rem;
+}
+
+.popup-error {
+  background-color: #e74c3c;
+}
+
+.popup-success {
+  background-color: #27ae60;
+}
+
+.popup.fade-out {
+  opacity: 0;
+  transform: translateY(-10px);
+}
 /*# sourceMappingURL=index.f7626f62.css.map */

@@ -1,0 +1,58 @@
+// Variables for reusability
+$color-error: red; // Change this to your desired error color
+$color-success: green; // Change this to your desired success color
+$border-radius: 8px;
+$icon-size: 3rem;
+$message-size: 1.3rem;
+
+.alert {
+    display: flex;
+    align-items: center;
+    padding: .5rem 1rem;
+    margin: 1.6rem 0;
+    border-radius: $border-radius;
+    position: relative;
+    animation: fadeIn 0.3s ease-in-out;
+
+    &-icon {
+        margin-right: 12px;
+        flex-shrink: 0;
+
+        svg {
+            width: $icon-size;
+            height: $icon-size;
+            fill: inherit;
+        }
+    }
+
+    &-content {
+        flex-grow: 1;
+        font-size: $message-size;
+        color: #1e1e1e;
+    }
+
+    &.alert-error {
+        svg {
+            fill: $color-error;
+        }
+    }
+
+    &.alert-success {
+        svg {
+            fill: $color-success
+        }
+    }
+}
+
+// Keyframe animation for smooth entry
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

@@ -13,7 +13,7 @@ export default class View {
      */
 
     render(data, render = true) {
-        if (!data || Array.isArray(data) && data.length === 0) return this.renderError();
+        if (!data || (Array.isArray(data) && data.length === 0)) return this.renderError();
 
         this._data = data;
         const markup = this._generateMarkup();
@@ -35,12 +35,12 @@ export default class View {
         newElements.forEach((newEl, i) => {
             const curEl = curElements[i];
 
-            // update changed text
+            // Update changed text
             if (!newEl.isEqualNode(curEl) && newEl.firstChild?.nodeValue.trim() !== '') {
                 curEl.textContent = newEl.textContent;
             }
 
-            // update changed attributes
+            // Update changed attributes
             if (!newEl.isEqualNode(curEl)) {
                 Array.from(newEl.attributes).forEach(attr =>
                     curEl.setAttribute(attr.name, attr.value)
@@ -55,25 +55,27 @@ export default class View {
 
     renderSpinner() {
         const markup = `
-            <div class="spinner">
-              <svg>
-                <use href="${icons}#icon-loader"></use>
-              </svg>
-            </div>
-        `;
+      <div class="spinner">
+        <svg>
+          <use href="${icons}#icon-loader"></use>
+        </svg>
+      </div>
+    `;
         this._clear();
         this._parentElement.insertAdjacentHTML('afterbegin', markup);
-    };
+    }
 
     renderError(message = this._errorMessage) {
         const markup = `
-            <div class="error">
-                <div>
+            <div class="alert alert-error">
+                <div class="alert-icon">
                     <svg>
                         <use href="${icons}#icon-alert-triangle"></use>
                     </svg>
                 </div>
-                <p>${message}</p>
+                <div class="alert-content alert-error">
+                    <p>${message}</p>
+                </div>
             </div>
         `;
         this._clear();
@@ -82,16 +84,70 @@ export default class View {
 
     renderMessage(message = this._successMessage) {
         const markup = `
-            <div class="message">
-                <div>
+            <div class="alert alert-success">
+                <div class="alert-icon">
                     <svg>
                         <use href="${icons}#icon-smile"></use>
                     </svg>
                 </div>
-                <p>${message}</p>
+                <div class="alert-content alert-success">
+                    <p>${message}</p>
+                </div>
             </div>
         `;
         this._clear();
         this._parentElement.insertAdjacentHTML('afterbegin', markup);
     }
+
+
+
+    // Function for displaying popup window for errors
+    showPopupError(message = this._errorMessage) {
+        const popup = document.createElement('div');
+        popup.classList.add('popup', 'popup-error'); // Styling class for the popup
+        popup.innerHTML = `
+            <div class="popup-icon">
+                <svg>
+                <use href="${icons}#icon-alert-triangle"></use>
+                </svg>
+            </div>
+            <div class="popup-message">${message}</div>
+            `;
+        document.body.appendChild(popup); // Append to the body for fixed positioning
+        this._autoRemovePopup(popup);
+    }
+
+    // New Popup Display Function for Success Messages
+    showPopupMessage(message = this._successMessage) {
+        const popup = document.createElement('div');
+        popup.classList.add('popup', 'popup-success'); // Styling class for the popup
+        popup.innerHTML = `
+            <div class="popup-icon">
+                <svg>
+                <use href="${icons}#icon-smile"></use>
+                </svg>
+            </div>
+            <div class="popup-message">${message}</div>
+            `;
+        document.body.appendChild(popup);
+        this._autoRemovePopup(popup);
+    }
+
+    // Automatically remove popup after 3 seconds
+    _autoRemovePopup(popup) {
+        setTimeout(() => {
+            popup.classList.add('fade-out'); // Add a fade-out class to animate the disappearing
+            setTimeout(() => popup.remove(), 500); // Remove after fade-out completes
+        }, 3000);
+    }
+
+    // _addCloseListener() {
+    //     const closeButtons = this._parentElement.querySelectorAll('.alert-close');
+    //     closeButtons.forEach(button => {
+    //         button.addEventListener('click', () => {
+    //             button.closest('.alert').classList.remove('active');
+    //             setTimeout(() => button.closest('.alert').remove(), 300); // Close after animation
+    //         });
+    //     });
+    // }
 }

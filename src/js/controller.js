@@ -50,7 +50,7 @@ const controlSearchResults = async function () {
         // 4) render initial pagination buttons
         paginationView.render(model.state.search);
     } catch (error) {
-        console.log(error);
+        resultsView.showPopupError(error);
     }
 };
 
@@ -88,7 +88,7 @@ const controlBookmarks = function () {
 const controlAddRecipe = async function (newRecipe) {
     try {
         // load spinner
-        addRecipeView.renderSpinner();
+        recipeView.renderSpinner();
 
         // Upload new recipe data
         await model.uploadRecipe(newRecipe);
@@ -104,11 +104,11 @@ const controlAddRecipe = async function (newRecipe) {
         window.history.pushState(null, '', `#${model.state.recipe.id}`);
 
         // Success message
-        addRecipeView.renderMessage();
+        addRecipeView.showPopupMessage();
 
         // Close form window
+        addRecipeView._toggleWindow();
         setTimeout(() => {
-            addRecipeView._toggleWindow();
         }, MODAL_CLOSE_SEC * 1000);
     } catch (err) {
         console.error('💥', err);

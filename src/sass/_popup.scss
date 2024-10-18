@@ -1,0 +1,40 @@
+.popup {
+    position: fixed;
+    top: 2rem;
+    right: 2rem;
+    padding: 1rem 1.5rem;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 9999;
+    transition: all 0.3s ease;
+    opacity: 1;
+
+    &-icon {
+        margin-right: 1rem;
+
+        svg {
+            width: 24px;
+            height: 24px;
+        }
+    }
+
+    &-message {
+        font-size: 1.4rem;
+        color: #fff;
+    }
+
+    &-error {
+        background-color: #e74c3c; // Red color for error
+    }
+
+    &-success {
+        background-color: #27ae60; // Green color for success
+    }
+
+    &.fade-out {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+}
