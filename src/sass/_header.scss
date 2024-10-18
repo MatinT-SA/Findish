@@ -7,7 +7,7 @@
 
   &__logo {
     margin-left: 4rem;
-    height: 4.6rem;
+    height: 9.6rem;
     display: block;
   }
 }
@@ -137,7 +137,7 @@
   }
 
   &:hover,
-  .nav__btn--bookmarks:hover + & {
+  .nav__btn--bookmarks:hover+& {
     visibility: visible;
     opacity: 1;
   }
