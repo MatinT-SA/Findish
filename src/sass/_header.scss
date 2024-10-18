@@ -9,6 +9,11 @@
     margin-left: 4rem;
     height: 9.6rem;
     display: block;
+    transition: .15s ease-in;
+  }
+
+  &__logo:hover {
+    transform: scale(1.04);
   }
 }
 

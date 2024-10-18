@@ -261,7 +261,12 @@ body {
 .header__logo {
   height: 9.6rem;
   margin-left: 4rem;
+  transition: all .15s ease-in;
   display: block;
+}
+
+.header__logo:hover {
+  transform: scale(1.04);
 }
 
 .search {
