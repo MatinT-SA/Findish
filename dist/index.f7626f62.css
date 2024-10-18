@@ -858,6 +858,7 @@ body {
 }
 
 .popup-icon svg {
+  fill: #1c551c;
   width: 24px;
   height: 24px;
 }

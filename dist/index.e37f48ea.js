@@ -660,11 +660,9 @@ const controlBookmarks = function() {
 };
 const controlAddRecipe = async function(newRecipe) {
     try {
-        // load spinner
         (0, _recipeViewJsDefault.default).renderSpinner();
         // Upload new recipe data
         await _modelJs.uploadRecipe(newRecipe);
-        console.log(_modelJs.state.recipe);
         // Render recipe
         (0, _recipeViewJsDefault.default).render(_modelJs.state.recipe);
         // Render bookmark view
@@ -674,10 +672,11 @@ const controlAddRecipe = async function(newRecipe) {
         // Success message
         (0, _addRecipeViewJsDefault.default).showPopupMessage();
         // Close form window
-        (0, _addRecipeViewJsDefault.default)._toggleWindow();
-        setTimeout(()=>{}, (0, _configJs.MODAL_CLOSE_SEC) * 1000);
+        setTimeout(()=>{
+            (0, _addRecipeViewJsDefault.default)._toggleWindow();
+        }, (0, _configJs.MODAL_CLOSE_SEC) * 1000);
+        return;
     } catch (err) {
-        console.error("\uD83D\uDCA5", err);
         (0, _addRecipeViewJsDefault.default).renderError(err.message);
     }
 };
@@ -2124,7 +2123,7 @@ const API_URL = "https://forkify-api.herokuapp.com/api/v2/recipes/";
 const TIMEOUT_SEC = 10;
 const RES_PER_PAGE = 10;
 const API_KEY = "5e47f10d-aa86-44a1-81b5-a0f07055eb70";
-const MODAL_CLOSE_SEC = 0.5;
+const MODAL_CLOSE_SEC = 0.1;
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"hGI1E":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
@@ -2612,12 +2611,12 @@ class View {
     }
     renderSpinner() {
         const markup = `
-      <div class="spinner">
-        <svg>
-          <use href="${(0, _iconsSvgDefault.default)}#icon-loader"></use>
-        </svg>
-      </div>
-    `;
+            <div class="spinner">
+                <svg>
+                <use href="${(0, _iconsSvgDefault.default)}#icon-loader"></use>
+                </svg>
+            </div>
+            `;
         this._clear();
         this._parentElement.insertAdjacentHTML("afterbegin", markup);
     }
@@ -2653,10 +2652,9 @@ class View {
         this._clear();
         this._parentElement.insertAdjacentHTML("afterbegin", markup);
     }
-    // Function for displaying popup window for errors
     showPopupError(message = this._errorMessage) {
         const popup = document.createElement("div");
-        popup.classList.add("popup", "popup-error"); // Styling class for the popup
+        popup.classList.add("popup", "popup-error");
         popup.innerHTML = `
             <div class="popup-icon">
                 <svg>
@@ -2665,17 +2663,16 @@ class View {
             </div>
             <div class="popup-message">${message}</div>
             `;
-        document.body.appendChild(popup); // Append to the body for fixed positioning
+        document.body.appendChild(popup);
         this._autoRemovePopup(popup);
     }
-    // New Popup Display Function for Success Messages
     showPopupMessage(message = this._successMessage) {
         const popup = document.createElement("div");
-        popup.classList.add("popup", "popup-success"); // Styling class for the popup
+        popup.classList.add("popup", "popup-success");
         popup.innerHTML = `
             <div class="popup-icon">
                 <svg>
-                <use href="${0, _iconsSvgDefault.default}#icon-smile"></use>
+                    <use href="${0, _iconsSvgDefault.default}#icon-check"></use>
                 </svg>
             </div>
             <div class="popup-message">${message}</div>
@@ -2683,11 +2680,10 @@ class View {
         document.body.appendChild(popup);
         this._autoRemovePopup(popup);
     }
-    // Automatically remove popup after 3 seconds
     _autoRemovePopup(popup) {
         setTimeout(()=>{
-            popup.classList.add("fade-out"); // Add a fade-out class to animate the disappearing
-            setTimeout(()=>popup.remove(), 500); // Remove after fade-out completes
+            popup.classList.add("fade-out");
+            setTimeout(()=>popup.remove(), 500);
         }, 3000);
     }
 }
@@ -3440,7 +3436,7 @@ var _viewJs = require("./View.js");
 var _viewJsDefault = parcelHelpers.interopDefault(_viewJs);
 class AddRecipeView extends (0, _viewJsDefault.default) {
     _parentElement = document.querySelector(".upload");
-    _successMessage = "Recipe was succesfully uploaded \u2705";
+    _successMessage = "Recipe was successfully uploaded";
     _overlay = document.querySelector(".overlay");
     _window = document.querySelector(".add-recipe-window");
     _btnOpen = document.querySelector(".nav__btn--add-recipe");

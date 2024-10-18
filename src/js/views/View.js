@@ -55,12 +55,12 @@ export default class View {
 
     renderSpinner() {
         const markup = `
-      <div class="spinner">
-        <svg>
-          <use href="${icons}#icon-loader"></use>
-        </svg>
-      </div>
-    `;
+            <div class="spinner">
+                <svg>
+                <use href="${icons}#icon-loader"></use>
+                </svg>
+            </div>
+            `;
         this._clear();
         this._parentElement.insertAdjacentHTML('afterbegin', markup);
     }
@@ -99,12 +99,9 @@ export default class View {
         this._parentElement.insertAdjacentHTML('afterbegin', markup);
     }
 
-
-
-    // Function for displaying popup window for errors
     showPopupError(message = this._errorMessage) {
         const popup = document.createElement('div');
-        popup.classList.add('popup', 'popup-error'); // Styling class for the popup
+        popup.classList.add('popup', 'popup-error');
         popup.innerHTML = `
             <div class="popup-icon">
                 <svg>
@@ -113,18 +110,17 @@ export default class View {
             </div>
             <div class="popup-message">${message}</div>
             `;
-        document.body.appendChild(popup); // Append to the body for fixed positioning
+        document.body.appendChild(popup);
         this._autoRemovePopup(popup);
     }
 
-    // New Popup Display Function for Success Messages
     showPopupMessage(message = this._successMessage) {
         const popup = document.createElement('div');
-        popup.classList.add('popup', 'popup-success'); // Styling class for the popup
+        popup.classList.add('popup', 'popup-success');
         popup.innerHTML = `
             <div class="popup-icon">
                 <svg>
-                <use href="${icons}#icon-smile"></use>
+                    <use href="${icons}#icon-check"></use>
                 </svg>
             </div>
             <div class="popup-message">${message}</div>
@@ -133,21 +129,10 @@ export default class View {
         this._autoRemovePopup(popup);
     }
 
-    // Automatically remove popup after 3 seconds
     _autoRemovePopup(popup) {
         setTimeout(() => {
-            popup.classList.add('fade-out'); // Add a fade-out class to animate the disappearing
-            setTimeout(() => popup.remove(), 500); // Remove after fade-out completes
+            popup.classList.add('fade-out');
+            setTimeout(() => popup.remove(), 500);
         }, 3000);
     }
-
-    // _addCloseListener() {
-    //     const closeButtons = this._parentElement.querySelectorAll('.alert-close');
-    //     closeButtons.forEach(button => {
-    //         button.addEventListener('click', () => {
-    //             button.closest('.alert').classList.remove('active');
-    //             setTimeout(() => button.closest('.alert').remove(), 300); // Close after animation
-    //         });
-    //     });
-    // }
 }
