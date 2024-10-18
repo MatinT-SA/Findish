@@ -1,13 +1,15 @@
 // $color-primary: #f59a83;
-$color-primary: #f38e82;
-$color-grad-1: #fbdb89;
-$color-grad-2: #f48982;
+$color-primary: #f68d7f;
+$color-grad-1: #fbd46d;
+$color-grad-2: #f48b7b;
 
-$color-grey-light-1: #f9f5f3; // Light background
-$color-grey-light-2: #f2efee; // Light lines
-$color-grey-light-3: #d3c7c3; // Light text (placeholder)
-$color-grey-dark-1: #615551; // Normal text
-$color-grey-dark-2: #918581; // Lighter text
+$color-grey-light-1: #f8f4f2;
+$color-grey-light-2: #e8e0de;
+$color-grey-light-3: #d0b8b5;
+
+$color-grey-dark-1: #4e3e3c;
+$color-grey-dark-2: #8b7572;
+
 
 $gradient: linear-gradient(to right bottom, $color-grad-1, $color-grad-2);
 
@@ -41,10 +43,11 @@ body {
   font-weight: 400;
   line-height: 1.6;
   color: $color-grey-dark-1;
-  background-image: $gradient;
-  background-size: cover;
-  background-repeat: no-repeat;
-  min-height: calc(100vh - 2 * 4vw);
+
+  background-color: #B25049;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 1000'%3E%3Cg %3E%3Ccircle fill='%23B25049' cx='50' cy='0' r='50'/%3E%3Cg fill='%23b7554a' %3E%3Ccircle cx='0' cy='50' r='50'/%3E%3Ccircle cx='100' cy='50' r='50'/%3E%3C/g%3E%3Ccircle fill='%23bb5b4a' cx='50' cy='100' r='50'/%3E%3Cg fill='%23c0614b' %3E%3Ccircle cx='0' cy='150' r='50'/%3E%3Ccircle cx='100' cy='150' r='50'/%3E%3C/g%3E%3Ccircle fill='%23c4664c' cx='50' cy='200' r='50'/%3E%3Cg fill='%23c86c4c' %3E%3Ccircle cx='0' cy='250' r='50'/%3E%3Ccircle cx='100' cy='250' r='50'/%3E%3C/g%3E%3Ccircle fill='%23cc724d' cx='50' cy='300' r='50'/%3E%3Cg fill='%23d0784e' %3E%3Ccircle cx='0' cy='350' r='50'/%3E%3Ccircle cx='100' cy='350' r='50'/%3E%3C/g%3E%3Ccircle fill='%23d47e4f' cx='50' cy='400' r='50'/%3E%3Cg fill='%23d78450' %3E%3Ccircle cx='0' cy='450' r='50'/%3E%3Ccircle cx='100' cy='450' r='50'/%3E%3C/g%3E%3Ccircle fill='%23da8a52' cx='50' cy='500' r='50'/%3E%3Cg fill='%23de9153' %3E%3Ccircle cx='0' cy='550' r='50'/%3E%3Ccircle cx='100' cy='550' r='50'/%3E%3C/g%3E%3Ccircle fill='%23e09755' cx='50' cy='600' r='50'/%3E%3Cg fill='%23e39d56' %3E%3Ccircle cx='0' cy='650' r='50'/%3E%3Ccircle cx='100' cy='650' r='50'/%3E%3C/g%3E%3Ccircle fill='%23e6a458' cx='50' cy='700' r='50'/%3E%3Cg fill='%23e8aa5a' %3E%3Ccircle cx='0' cy='750' r='50'/%3E%3Ccircle cx='100' cy='750' r='50'/%3E%3C/g%3E%3Ccircle fill='%23eab15d' cx='50' cy='800' r='50'/%3E%3Cg fill='%23ecb75f' %3E%3Ccircle cx='0' cy='850' r='50'/%3E%3Ccircle cx='100' cy='850' r='50'/%3E%3C/g%3E%3Ccircle fill='%23eebe62' cx='50' cy='900' r='50'/%3E%3Cg fill='%23f0c466' %3E%3Ccircle cx='0' cy='950' r='50'/%3E%3Ccircle cx='100' cy='950' r='50'/%3E%3C/g%3E%3Ccircle fill='%23F1CB69' cx='50' cy='1000' r='50'/%3E%3C/g%3E%3C/svg%3E");
+  background-attachment: fixed;
+  background-size: contain;
 }
 
 .container {

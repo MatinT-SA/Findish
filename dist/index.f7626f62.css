@@ -19,11 +19,11 @@ html {
 }
 
 body {
-  color: #615551;
-  background-image: linear-gradient(to bottom right, #fbdb89, #f48982);
-  background-repeat: no-repeat;
-  background-size: cover;
-  min-height: calc(100vh - 8vw);
+  color: #4e3e3c;
+  background-color: #b25049;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 1000'%3E%3Cg %3E%3Ccircle fill='%23B25049' cx='50' cy='0' r='50'/%3E%3Cg fill='%23b7554a' %3E%3Ccircle cx='0' cy='50' r='50'/%3E%3Ccircle cx='100' cy='50' r='50'/%3E%3C/g%3E%3Ccircle fill='%23bb5b4a' cx='50' cy='100' r='50'/%3E%3Cg fill='%23c0614b' %3E%3Ccircle cx='0' cy='150' r='50'/%3E%3Ccircle cx='100' cy='150' r='50'/%3E%3C/g%3E%3Ccircle fill='%23c4664c' cx='50' cy='200' r='50'/%3E%3Cg fill='%23c86c4c' %3E%3Ccircle cx='0' cy='250' r='50'/%3E%3Ccircle cx='100' cy='250' r='50'/%3E%3C/g%3E%3Ccircle fill='%23cc724d' cx='50' cy='300' r='50'/%3E%3Cg fill='%23d0784e' %3E%3Ccircle cx='0' cy='350' r='50'/%3E%3Ccircle cx='100' cy='350' r='50'/%3E%3C/g%3E%3Ccircle fill='%23d47e4f' cx='50' cy='400' r='50'/%3E%3Cg fill='%23d78450' %3E%3Ccircle cx='0' cy='450' r='50'/%3E%3Ccircle cx='100' cy='450' r='50'/%3E%3C/g%3E%3Ccircle fill='%23da8a52' cx='50' cy='500' r='50'/%3E%3Cg fill='%23de9153' %3E%3Ccircle cx='0' cy='550' r='50'/%3E%3Ccircle cx='100' cy='550' r='50'/%3E%3C/g%3E%3Ccircle fill='%23e09755' cx='50' cy='600' r='50'/%3E%3Cg fill='%23e39d56' %3E%3Ccircle cx='0' cy='650' r='50'/%3E%3Ccircle cx='100' cy='650' r='50'/%3E%3C/g%3E%3Ccircle fill='%23e6a458' cx='50' cy='700' r='50'/%3E%3Cg fill='%23e8aa5a' %3E%3Ccircle cx='0' cy='750' r='50'/%3E%3Ccircle cx='100' cy='750' r='50'/%3E%3C/g%3E%3Ccircle fill='%23eab15d' cx='50' cy='800' r='50'/%3E%3Cg fill='%23ecb75f' %3E%3Ccircle cx='0' cy='850' r='50'/%3E%3Ccircle cx='100' cy='850' r='50'/%3E%3C/g%3E%3Ccircle fill='%23eebe62' cx='50' cy='900' r='50'/%3E%3Cg fill='%23f0c466' %3E%3Ccircle cx='0' cy='950' r='50'/%3E%3Ccircle cx='100' cy='950' r='50'/%3E%3C/g%3E%3Ccircle fill='%23F1CB69' cx='50' cy='1000' r='50'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: contain;
+  background-attachment: fixed;
   font-family: Nunito Sans, sans-serif;
   font-weight: 400;
   line-height: 1.6;
@@ -40,7 +40,7 @@ body {
   margin: 4vw auto;
   display: grid;
   overflow: hidden;
-  box-shadow: 0 2rem 6rem .5rem #61555133;
+  box-shadow: 0 2rem 6rem .5rem #4e3e3c33;
 }
 
 @media only screen and (width <= 78.15em) {
@@ -55,7 +55,7 @@ body {
   text-transform: uppercase;
   color: #fff;
   cursor: pointer;
-  background-image: linear-gradient(to bottom right, #fbdb89, #f48982);
+  background-image: linear-gradient(to bottom right, #fbd46d, #f48b7b);
   border: none;
   border-radius: 10rem;
   align-items: center;
@@ -101,9 +101,9 @@ body {
 }
 
 .btn--inline {
-  color: #f38e82;
+  color: #f68d7f;
   cursor: pointer;
-  background-color: #f9f5f3;
+  background-color: #f8f4f2;
   border: none;
   border-radius: 10rem;
   align-items: center;
@@ -126,8 +126,8 @@ body {
 }
 
 .btn--inline:hover {
-  color: #f48982;
-  background-color: #f2efee;
+  color: #f48b7b;
+  background-color: #e8e0de;
 }
 
 .btn--inline:focus {
@@ -136,7 +136,7 @@ body {
 
 .btn--round {
   cursor: pointer;
-  background-image: linear-gradient(to bottom right, #fbdb89, #f48982);
+  background-image: linear-gradient(to bottom right, #fbd46d, #f48b7b);
   border: none;
   border-radius: 50%;
   justify-content: center;
@@ -170,7 +170,7 @@ body {
 }
 
 .btn--tiny svg {
-  fill: #f38e82;
+  fill: #f68d7f;
   width: 100%;
   height: 100%;
   transition: all .3s;
@@ -181,12 +181,12 @@ body {
 }
 
 .btn--tiny:hover svg {
-  fill: #f48982;
+  fill: #f48b7b;
   transform: translateY(-1px);
 }
 
 .btn--tiny:active svg {
-  fill: #f48982;
+  fill: #f48b7b;
   transform: translateY(0);
 }
 
@@ -195,7 +195,7 @@ body {
 }
 
 .heading--2 {
-  color: #f38e82;
+  color: #f68d7f;
   text-transform: uppercase;
   text-align: center;
   margin-bottom: 2.5rem;
@@ -204,7 +204,7 @@ body {
 }
 
 .link:link, .link:visited {
-  color: #918581;
+  color: #8b7572;
 }
 
 .spinner {
@@ -213,7 +213,7 @@ body {
 }
 
 .spinner svg {
-  fill: #f38e82;
+  fill: #f68d7f;
   width: 6rem;
   height: 6rem;
   animation: 2s linear infinite rotate;
@@ -237,7 +237,7 @@ body {
 }
 
 .message svg, .error svg {
-  fill: #f38e82;
+  fill: #f68d7f;
   width: 3rem;
   height: 3rem;
   transform: translateY(-.3rem);
@@ -251,7 +251,7 @@ body {
 }
 
 .header {
-  background-color: #f9f5f3;
+  background-color: #f8f4f2;
   grid-area: head;
   justify-content: space-between;
   align-items: center;
@@ -280,7 +280,7 @@ body {
 
 .search:focus-within {
   transform: translateY(-2px);
-  box-shadow: 0 .7rem 3rem #61555114;
+  box-shadow: 0 .7rem 3rem #4e3e3c14;
 }
 
 .search__field {
@@ -297,7 +297,7 @@ body {
 }
 
 .search__field::placeholder {
-  color: #d3c7c3;
+  color: #d0b8b5;
 }
 
 @media only screen and (width <= 61.25em) {
@@ -347,7 +347,7 @@ body {
 }
 
 .nav__btn svg {
-  fill: #f38e82;
+  fill: #f68d7f;
   width: 2.4rem;
   height: 2.4rem;
   margin-right: .7rem;
@@ -359,7 +359,7 @@ body {
 }
 
 .nav__btn:hover {
-  background-color: #f2efee;
+  background-color: #e8e0de;
 }
 
 .bookmarks {
@@ -372,7 +372,7 @@ body {
   transition: all .5s .2s;
   position: absolute;
   right: -2.5rem;
-  box-shadow: 0 .8rem 5rem 2rem #6155511a;
+  box-shadow: 0 .8rem 5rem 2rem #4e3e3c1a;
 }
 
 .bookmarks__list {
@@ -389,7 +389,7 @@ body {
 }
 
 .bookmarks__field:hover {
-  background-color: #f2efee;
+  background-color: #e8e0de;
 }
 
 .bookmarks:hover, .nav__btn--bookmarks:hover + .bookmarks {
@@ -407,12 +407,12 @@ body {
 }
 
 .preview__link:hover {
-  background-color: #f9f5f3;
+  background-color: #f8f4f2;
   transform: translateY(-2px);
 }
 
 .preview__link--active {
-  background-color: #f9f5f3;
+  background-color: #f8f4f2;
 }
 
 .preview__fig {
@@ -428,7 +428,7 @@ body {
 .preview__fig:before {
   content: "";
   opacity: .4;
-  background-image: linear-gradient(to bottom right, #fbdb89, #f48982);
+  background-image: linear-gradient(to bottom right, #fbd46d, #f48b7b);
   width: 100%;
   height: 100%;
   display: block;
@@ -454,7 +454,7 @@ body {
 }
 
 .preview__title {
-  color: #f38e82;
+  color: #f68d7f;
   text-transform: uppercase;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -466,14 +466,14 @@ body {
 }
 
 .preview__publisher {
-  color: #918581;
+  color: #8b7572;
   text-transform: uppercase;
   font-size: 1.15rem;
   font-weight: 600;
 }
 
 .preview__user-generated {
-  background-color: #eeeae8;
+  background-color: #e4dad8;
   border-radius: 10rem;
   justify-content: center;
   align-items: center;
@@ -485,7 +485,7 @@ body {
 }
 
 .preview__user-generated svg {
-  fill: #f38e82;
+  fill: #f68d7f;
   width: 1.2rem;
   height: 1.2rem;
 }
@@ -521,18 +521,18 @@ body {
 }
 
 .copyright {
-  color: #918581;
+  color: #8b7572;
   margin-top: 4rem;
   padding: 0 3.5rem;
   font-size: 1.2rem;
 }
 
 .copyright .twitter-link:link, .copyright .twitter-link:visited {
-  color: #918581;
+  color: #8b7572;
 }
 
 .recipe {
-  background-color: #f9f5f3;
+  background-color: #f8f4f2;
 }
 
 .recipe__fig {
@@ -544,7 +544,7 @@ body {
 .recipe__fig:before {
   content: "";
   opacity: .6;
-  background-image: linear-gradient(to bottom right, #fbdb89, #f48982);
+  background-image: linear-gradient(to bottom right, #fbd46d, #f48b7b);
   width: 100%;
   height: 100%;
   display: block;
@@ -577,7 +577,7 @@ body {
 .recipe__title span {
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
-  background-image: linear-gradient(to bottom right, #fbdb89, #f48982);
+  background-image: linear-gradient(to bottom right, #fbd46d, #f48b7b);
   padding: 1.3rem 2rem;
 }
 
@@ -605,7 +605,7 @@ body {
 }
 
 .recipe__info-icon {
-  fill: #f38e82;
+  fill: #f68d7f;
   width: 2.35rem;
   height: 2.35rem;
   margin-right: 1.15rem;
@@ -623,7 +623,7 @@ body {
 }
 
 .recipe__user-generated {
-  background-color: #eeeae8;
+  background-color: #e4dad8;
   border-radius: 10rem;
   justify-content: center;
   align-items: center;
@@ -635,13 +635,13 @@ body {
 }
 
 .recipe__user-generated svg {
-  fill: #f38e82;
+  fill: #f68d7f;
   width: 2.25rem;
   height: 2.25rem;
 }
 
 .recipe__ingredients {
-  background-color: #f2efee;
+  background-color: #e8e0de;
   flex-direction: column;
   align-items: center;
   padding: 5rem 8rem;
@@ -662,7 +662,7 @@ body {
 }
 
 .recipe__icon {
-  fill: #f38e82;
+  fill: #f68d7f;
   flex: none;
   width: 2rem;
   height: 2rem;
@@ -684,7 +684,7 @@ body {
 
 .recipe__directions-text {
   text-align: center;
-  color: #918581;
+  color: #8b7572;
   margin-bottom: 3.5rem;
   font-size: 1.7rem;
 }
@@ -764,12 +764,12 @@ body {
 }
 
 .upload__column input::placeholder {
-  color: #d3c7c3;
+  color: #d0b8b5;
 }
 
 .upload__column input:focus {
-  background-color: #f9f5f3;
-  border: 1px solid #f38e82;
+  background-color: #f8f4f2;
+  border: 1px solid #f68d7f;
   outline: none;
 }
 
