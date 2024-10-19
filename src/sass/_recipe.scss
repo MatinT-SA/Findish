@@ -1,3 +1,5 @@
+$color-grey-light-2: #e8e0de;
+
 .recipe {
   background-color: $color-grey-light-1;
 
@@ -17,11 +19,9 @@
       position: absolute;
       top: 0;
       left: 0;
-      background-image: linear-gradient(
-        to right bottom,
-        $color-grad-1,
-        $color-grad-2
-      );
+      background-image: linear-gradient(to right bottom,
+          $color-grad-1,
+          $color-grad-2 );
       opacity: 0.6;
     }
   }
@@ -50,11 +50,9 @@
       -webkit-box-decoration-break: clone;
       box-decoration-break: clone;
       padding: 1.3rem 2rem;
-      background-image: linear-gradient(
-        to right bottom,
-        $color-grad-1,
-        $color-grad-2
-      );
+      background-image: linear-gradient(to right bottom,
+          $color-grad-1,
+          $color-grad-2 );
     }
 
     @media only screen and (max-width: $bp-medium) {
