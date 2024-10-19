@@ -1,14 +1,13 @@
-// $color-primary: #f59a83;
-$color-primary: #f68d7f;
-$color-grad-1: #fbd46d;
-$color-grad-2: #f48b7b;
+$color-primary: #ea1313;
+$color-grad-1: #d2af47;
+$color-grad-2: #6fdf87;
 
 $color-grey-light-1: #f8f4f2;
 $color-grey-light-2: #e8e0de;
 $color-grey-light-3: #d0b8b5;
 
-$color-grey-dark-1: #4e3e3c;
-$color-grey-dark-2: #8b7572;
+$color-grey-dark-1: #2b2626;
+$color-grey-dark-2: #716564;
 
 
 $gradient: linear-gradient(to right bottom, $color-grad-1, $color-grad-2);
@@ -54,7 +53,7 @@ body {
   max-width: 120rem;
   min-height: 117rem;
   margin: 4vw auto;
-  background-color: #fff;
+  background: linear-gradient(180deg, rgba(137, 255, 6, 1) 0%, rgba(237, 237, 237, 1) 17%);
   border-radius: 9px;
   overflow: hidden;
   box-shadow: 0 2rem 6rem 0.5rem rgba($color-grey-dark-1, 0.2);
