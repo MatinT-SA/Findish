@@ -52,7 +52,7 @@ $color-grey-light-2: #e8e0de;
       width: auto;
 
       &::placeholder {
-        color: white;
+        visibility: hidden;
       }
     }
   }

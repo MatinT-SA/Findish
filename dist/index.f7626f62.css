@@ -15,7 +15,7 @@ html {
 
 @media only screen and (width <= 61.25em) {
   html {
-    font-size: 50%;
+    font-size: 55%;
   }
 }
 
@@ -313,7 +313,7 @@ body {
   }
 
   .search__field::placeholder {
-    color: #fff;
+    visibility: hidden;
   }
 }
 
@@ -591,7 +591,7 @@ body {
 
 @media only screen and (width <= 61.25em) {
   .recipe__title {
-    width: 70%;
+    width: 75%;
   }
 }
 
