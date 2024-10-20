@@ -5,7 +5,7 @@
   "default": "index.html",
   "scripts": {
     "start": "parcel index.html",
-    "build": "parcel build index.html --dist-dir ./dist --public-url /Findish/"
+    "build": "parcel build index.html --dist-dir ./dist"
   },
   "author": "Matin Taherzadeh",
   "license": "ISC",
