@@ -19,6 +19,12 @@ html {
   }
 }
 
+@media (width >= 78.15em) {
+  html {
+    font-size: 95%;
+  }
+}
+
 body {
   color: #2b2626;
   background-color: #b25049;
