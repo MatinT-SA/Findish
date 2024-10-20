@@ -23,10 +23,31 @@
             </a>
 
             <form class="search">
-                <input type="text" class="search__field" placeholder="More than 1,000,000 recipes..." />
+                <input type="text" class="search__field" placeholder="More than 1,000,000 recipes...">
                 <button class="btn search__btn">
-                    <svg class="search__icon">
-                        <use href="src/img/icons.svg#icon-search"></use>
+                    <svg height="200px" width="200px" version="1.1" id="_x32_" xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" xml:space="preserve"
+                        fill="#ea1313">
+                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                        <g id="SVGRepo_iconCarrier">
+                            <style type="text/css">
+                                .st0 {
+                                    fill: #ea1313;
+                                }
+                            </style>
+                            <g>
+                                <path class="st0"
+                                    d="M495.957,390.227H16.044C7.185,390.227,0,397.401,0,406.249v26.685c0,54.749,114.619,47.804,256,47.804 s256-2.185,256-47.804v-26.685C512,397.401,504.815,390.227,495.957,390.227z">
+                                </path>
+                                <path class="st0"
+                                    d="M42.934,353.858h426.13c15.913,0,28.794-12.891,28.794-28.794v-25.272c0-15.891-12.881-28.771-28.794-28.771 H430.37l-61.163,61.152c-15.652,15.662-41.033,15.662-56.696,0l-61.152-61.152H42.934c-15.913,0-28.793,12.88-28.793,28.771v25.272 C14.141,340.967,27.022,353.858,42.934,353.858z">
+                                </path>
+                                <path class="st0"
+                                    d="M256,30.977c-141.38,0-256,74.13-256,172.554v20.739c0,8.848,7.185,16.032,16.044,16.032h479.913 c8.858,0,16.043-7.185,16.043-16.032v-20.739C512,105.107,397.38,30.977,256,30.977z M128.706,144.118 c-9.38,0-16.967-7.586-16.967-16.967c0-9.37,7.587-16.978,16.967-16.978c9.37,0,16.978,7.609,16.978,16.978 C145.684,136.532,138.076,144.118,128.706,144.118z M205.076,93.205c-9.37,0-16.967-7.598-16.967-16.967 c0-9.381,7.598-16.967,16.967-16.967c9.38,0,16.978,7.586,16.978,16.967C222.054,85.608,214.456,93.205,205.076,93.205z M256,161.097c-9.37,0-16.978-7.609-16.978-16.978c0-9.37,7.609-16.967,16.978-16.967c9.37,0,16.978,7.598,16.978,16.967 C272.978,153.488,265.369,161.097,256,161.097z M306.924,93.205c-9.38,0-16.978-7.598-16.978-16.967 c0-9.381,7.598-16.967,16.978-16.967c9.37,0,16.967,7.586,16.967,16.967C323.891,85.608,316.293,93.205,306.924,93.205z M383.293,144.118c-9.37,0-16.978-7.586-16.978-16.967c0-9.37,7.609-16.978,16.978-16.978c9.381,0,16.967,7.609,16.967,16.978 C400.26,136.532,392.674,144.118,383.293,144.118z">
+                                </path>
+                            </g>
+                        </g>
                     </svg>
                     <span>Search</span>
                 </button>
@@ -99,30 +120,28 @@
             <div class="upload__column">
                 <h3 class="upload__heading">Recipe data</h3>
                 <label>Title</label>
-                <input value="TEST12" required name="title" type="text" />
+                <input value="" required name="title" type="text" placeholder="For example: Pasta" />
                 <label>URL</label>
-                <input value="TEST12" required name="sourceUrl" type="text" />
+                <input value="" required name="sourceUrl" type="text" placeholder="Your recipe source URL" />
                 <label>Image URL</label>
-                <input value="TEST12" required name="image" type="text" />
+                <input value="" required name="image" type="text" placeholder="Your food image URL" />
                 <label>Publisher</label>
-                <input value="TEST12" required name="publisher" type="text" />
+                <input value="" required name="publisher" type="text" placeholder="For example: Matin Taherzadeh" />
                 <label>Prep time</label>
-                <input value="23" required name="cookingTime" type="number" />
+                <input value="" required name="cookingTime" type="number" placeholder="For example: 45 (minutes)" />
                 <label>Servings</label>
-                <input value="23" required name="servings" type="number" />
+                <input value="" required name="servings" type="number" placeholder="For example: 5 (For 5 people)" />
             </div>
 
             <div class="upload__column">
                 <h3 class="upload__heading">Ingredients</h3>
                 <label>Ingredient 1</label>
-                <input value="0.5,kg,Rice" type="text" required name="ingredient-1"
+                <input value="" type="text" required name="ingredient-1"
                     placeholder="Format: 'Quantity,Unit,Description'" />
                 <label>Ingredient 2</label>
-                <input value="1,,Avocado" type="text" name="ingredient-2"
-                    placeholder="Format: 'Quantity,Unit,Description'" />
+                <input value="" type="text" name="ingredient-2" placeholder="Format: 'Quantity,Unit,Description'" />
                 <label>Ingredient 3</label>
-                <input value=",,salt" type="text" name="ingredient-3"
-                    placeholder="Format: 'Quantity,Unit,Description'" />
+                <input value="" type="text" name="ingredient-3" placeholder="Format: 'Quantity,Unit,Description'" />
                 <label>Ingredient 4</label>
                 <input type="text" name="ingredient-4" placeholder="Format: 'Quantity,Unit,Description'" />
                 <label>Ingredient 5</label>
