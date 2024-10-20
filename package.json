@@ -2,9 +2,10 @@
   "name": "findish",
   "version": "1.0.0",
   "description": "find, share, add recipe",
+  "default": "index.html",
   "scripts": {
     "start": "parcel index.html",
-    "build": "parcel build index.html"
+    "build": "parcel build index.html --dist-dir ./dist"
   },
   "author": "Matin Taherzadeh",
   "license": "ISC",
