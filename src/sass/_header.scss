@@ -1,8 +1,8 @@
-$color-grey-light-2: #e8e0de;
+@use 'base';
 
 .header {
   grid-area: head;
-  background-color: $color-grey-light-1;
+  background-color: base.$color-grey-light-1;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -13,7 +13,7 @@ $color-grey-light-2: #e8e0de;
     display: block;
     transition: .15s ease-in;
 
-    @media (max-width: $bp-tablet) {
+    @media (max-width: base.$bp-tablet) {
       height: 7.4rem;
     }
   }
@@ -33,13 +33,13 @@ $color-grey-light-2: #e8e0de;
 
   &:focus-within {
     transform: translateY(-2px);
-    box-shadow: 0 0.7rem 3rem rgba($color-grey-dark-1, 0.08);
+    box-shadow: 0 0.7rem 3rem rgba(base.$color-grey-dark-1, 0.08);
   }
 
   &__field {
     border: none;
     background: none;
-    font-family: $font-secondary;
+    font-family: base.$font-secondary;
     color: inherit;
     font-size: 1.5rem;
     width: 30rem;
@@ -49,10 +49,10 @@ $color-grey-light-2: #e8e0de;
     }
 
     &::placeholder {
-      color: $color-grey-light-3;
+      color: base.$color-grey-light-3;
     }
 
-    @media only screen and (max-width: $bp-medium) {
+    @media only screen and (max-width: base.$bp-medium) {
       width: auto;
 
       &::placeholder {
@@ -60,7 +60,7 @@ $color-grey-light-2: #e8e0de;
       }
     }
 
-    @media (max-width: $bp-tablet) {
+    @media (max-width: base.$bp-tablet) {
       width: 15rem;
     }
   }
@@ -71,12 +71,12 @@ $color-grey-light-2: #e8e0de;
     border-radius: 1rem;
 
     svg {
-      @media (max-width: $bp-tablet) {
+      @media (max-width: base.$bp-tablet) {
         display: none;
       }
     }
 
-    @media (max-width: $bp-tablet) {
+    @media (max-width: base.$bp-tablet) {
       padding: 1.25rem 1rem;
       font-size: 1.4rem;
     }
@@ -116,7 +116,7 @@ $color-grey-light-2: #e8e0de;
     svg {
       height: 2.4rem;
       width: 2.4rem;
-      fill: $color-primary;
+      fill: base.$color-primary;
       margin-right: 0.7rem;
       transform: translateY(-1px);
     }
@@ -126,7 +126,7 @@ $color-grey-light-2: #e8e0de;
     }
 
     &:hover {
-      background-color: $color-grey-light-2;
+      background-color: base.$color-grey-light-2;
     }
   }
 }
@@ -139,7 +139,7 @@ $color-grey-light-2: #e8e0de;
   z-index: 10;
   width: 40rem;
   background-color: #fff;
-  box-shadow: 0 0.8rem 5rem 2rem rgba($color-grey-dark-1, 0.1);
+  box-shadow: 0 0.8rem 5rem 2rem rgba(base.$color-grey-dark-1, 0.1);
 
   visibility: hidden;
   opacity: 0;
@@ -159,7 +159,7 @@ $color-grey-light-2: #e8e0de;
     transition: all 0.3s;
 
     &:hover {
-      background-color: $color-grey-light-2;
+      background-color: base.$color-grey-light-2;
     }
   }
 

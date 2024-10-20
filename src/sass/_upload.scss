@@ -1,3 +1,5 @@
+@use 'base';
+
 .add-recipe-window {
   position: fixed;
   top: 50%;
@@ -24,16 +26,16 @@
     background: none;
   }
 
-  @media (max-width: $bp-medium) {
+  @media (max-width: base.$bp-medium) {
     width: 80rem;
     padding: 3rem;
   }
 
-  @media (max-width: $bp-tablet) {
+  @media (max-width: base.$bp-tablet) {
     max-width: 100%;
   }
 
-  @media (max-width: $bp-small) {
+  @media (max-width: base.$bp-small) {
     width: 50rem;
     // max-height: 50rem;
     padding: 1rem;
@@ -64,7 +66,7 @@
   grid-template-columns: 1fr 1fr;
   gap: 4rem 6rem;
 
-  @media (max-width: $bp-small) {
+  @media (max-width: base.$bp-small) {
     grid-template-columns: 1fr;
     gap: 1rem;
     margin: 2rem;
@@ -76,7 +78,7 @@
     align-items: center;
     gap: 1.5rem;
 
-    @media (max-width: $bp-medium) {
+    @media (max-width: base.$bp-medium) {
       grid-template-columns: 1fr 2.5fr;
     }
 
@@ -94,13 +96,13 @@
       transition: all 0.2s;
 
       &::placeholder {
-        color: $color-grey-light-3;
+        color: base.$color-grey-light-3;
       }
 
       &:focus {
         outline: none;
-        border: 1px solid $color-primary;
-        background-color: $color-grey-light-1;
+        border: 1px solid base.$color-primary;
+        background-color: base.$color-grey-light-1;
       }
     }
 

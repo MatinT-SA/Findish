@@ -1,10 +1,13 @@
+@use 'sass:color';
+@use 'base';
+
 $color-grey-light-2: rgba(137, 255, 6, 0.7);
 $color-green-1: rgba(102, 225, 55, 1);
 $color-green-2: rgba(88, 220, 36, 1);
 $color-green-3: rgba(65, 205, 11, 1);
 
 .recipe {
-  background-color: $color-grey-light-1;
+  background-color: base.$color-grey-light-1;
 
   ///////////
   // FIGURE
@@ -23,8 +26,8 @@ $color-green-3: rgba(65, 205, 11, 1);
       top: 0;
       left: 0;
       background-image: linear-gradient(to right bottom,
-          $color-grad-1,
-          $color-grad-2 );
+          base.$color-grad-1,
+          base.$color-grad-2 );
       opacity: 0.6;
     }
   }
@@ -54,11 +57,11 @@ $color-green-3: rgba(65, 205, 11, 1);
       box-decoration-break: clone;
       padding: 1.3rem 2rem;
       background-image: linear-gradient(to right bottom,
-          $color-grad-1,
-          $color-grad-2 );
+          base.$color-grad-1,
+          base.$color-grad-2 );
     }
 
-    @media only screen and (max-width: $bp-medium) {
+    @media only screen and (max-width: base.$bp-medium) {
       width: 75%;
     }
   }
@@ -85,7 +88,7 @@ $color-green-3: rgba(65, 205, 11, 1);
   &__info-icon {
     height: 2.35rem;
     width: 2.35rem;
-    fill: $color-primary;
+    fill: base.$color-primary;
     margin-right: 1.15rem;
   }
 
@@ -101,7 +104,7 @@ $color-green-3: rgba(65, 205, 11, 1);
   }
 
   &__user-generated {
-    background-color: darken($color-grey-light-2, 2%);
+    background-color: color.adjust(base.$color-grey-light-2, $lightness: 2%);
 
     display: flex;
     align-items: center;
@@ -116,7 +119,7 @@ $color-green-3: rgba(65, 205, 11, 1);
     svg {
       height: 2.25rem;
       width: 2.25rem;
-      fill: $color-primary;
+      fill: base.$color-primary;
     }
   }
 
@@ -150,7 +153,7 @@ $color-green-3: rgba(65, 205, 11, 1);
   &__icon {
     height: 2rem;
     width: 2rem;
-    fill: $color-primary;
+    fill: base.$color-primary;
     margin-right: 1.1rem;
     flex: 0 0 auto;
     margin-top: 0.1rem;
@@ -175,7 +178,7 @@ $color-green-3: rgba(65, 205, 11, 1);
     font-size: 1.7rem;
     text-align: center;
     margin-bottom: 3.5rem;
-    color: $color-grey-dark-2;
+    color: base.$color-grey-dark-2;
   }
 
   &__publisher {
