@@ -272,6 +272,12 @@ body {
   display: block;
 }
 
+@media (width <= 48.75em) {
+  .header__logo {
+    height: 7.4rem;
+  }
+}
+
 .header__logo:hover {
   transform: scale(1.04);
 }
@@ -296,7 +302,7 @@ body {
   border: none;
   width: 30rem;
   font-family: Merriweather, serif;
-  font-size: 1.7rem;
+  font-size: 1.5rem;
 }
 
 .search__field:focus {
@@ -317,10 +323,27 @@ body {
   }
 }
 
+@media (width <= 48.75em) {
+  .search__field {
+    width: 15rem;
+  }
+}
+
 .search__btn {
   border-radius: 1rem;
   font-family: inherit;
   font-weight: 800;
+}
+
+@media (width <= 48.75em) {
+  .search__btn svg {
+    display: none;
+  }
+
+  .search__btn {
+    padding: 1.25rem 1rem;
+    font-size: 1.4rem;
+  }
 }
 
 .nav {
@@ -727,6 +750,13 @@ body {
   right: 1.6rem;
 }
 
+@media (width <= 61.25em) {
+  .add-recipe-window {
+    width: 80rem;
+    padding: 3rem;
+  }
+}
+
 .overlay {
   backdrop-filter: blur(4px);
   z-index: 100;
@@ -755,6 +785,12 @@ body {
   align-items: center;
   gap: 1.5rem;
   display: grid;
+}
+
+@media (width <= 61.25em) {
+  .upload__column {
+    grid-template-columns: 1fr 2.5fr;
+  }
 }
 
 .upload__column label {

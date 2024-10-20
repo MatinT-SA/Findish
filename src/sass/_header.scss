@@ -12,6 +12,10 @@ $color-grey-light-2: #e8e0de;
     height: 9.6rem;
     display: block;
     transition: .15s ease-in;
+
+    @media (max-width: $bp-tablet) {
+      height: 7.4rem;
+    }
   }
 
   &__logo:hover {
@@ -37,7 +41,7 @@ $color-grey-light-2: #e8e0de;
     background: none;
     font-family: $font-secondary;
     color: inherit;
-    font-size: 1.7rem;
+    font-size: 1.5rem;
     width: 30rem;
 
     &:focus {
@@ -55,12 +59,27 @@ $color-grey-light-2: #e8e0de;
         visibility: hidden;
       }
     }
+
+    @media (max-width: $bp-tablet) {
+      width: 15rem;
+    }
   }
 
   &__btn {
     font-weight: 800;
     font-family: inherit;
     border-radius: 1rem;
+
+    svg {
+      @media (max-width: $bp-tablet) {
+        display: none;
+      }
+    }
+
+    @media (max-width: $bp-tablet) {
+      padding: 1.25rem 1rem;
+      font-size: 1.4rem;
+    }
   }
 }
 
