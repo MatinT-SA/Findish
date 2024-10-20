@@ -28,6 +28,18 @@
     width: 80rem;
     padding: 3rem;
   }
+
+  @media (max-width: $bp-tablet) {
+    max-width: 100%;
+  }
+
+  @media (max-width: $bp-small) {
+    width: 50rem;
+    // max-height: 50rem;
+    padding: 1rem;
+    margin: 1rem;
+    overflow-y: scroll;
+  }
 }
 
 .overlay {
@@ -52,9 +64,11 @@
   grid-template-columns: 1fr 1fr;
   gap: 4rem 6rem;
 
-  // @media (max-width: $bp-medium) {
-  //   gap: 1rem 2rem;
-  // }
+  @media (max-width: $bp-small) {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin: 2rem;
+  }
 
   &__column {
     display: grid;

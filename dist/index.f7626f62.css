@@ -757,6 +757,21 @@ body {
   }
 }
 
+@media (width <= 48.75em) {
+  .add-recipe-window {
+    max-width: 100%;
+  }
+}
+
+@media (width <= 37.5em) {
+  .add-recipe-window {
+    width: 50rem;
+    margin: 1rem;
+    padding: 1rem;
+    overflow-y: scroll;
+  }
+}
+
 .overlay {
   backdrop-filter: blur(4px);
   z-index: 100;
@@ -778,6 +793,14 @@ body {
   grid-template-columns: 1fr 1fr;
   gap: 4rem 6rem;
   display: grid;
+}
+
+@media (width <= 37.5em) {
+  .upload {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin: 2rem;
+  }
 }
 
 .upload__column {
