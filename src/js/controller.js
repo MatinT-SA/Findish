@@ -7,7 +7,7 @@ import paginationView from './views/paginationView.js';
 import bookmarksView from './views/bookmarksView.js';
 import addRecipeView from './views/addRecipeView.js';
 
-import 'core-js/stable';
+import 'core-js/stable/index.js';
 import 'regenerator-runtime/runtime';
 
 const controlRecipes = async function () {
