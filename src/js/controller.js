@@ -117,7 +117,7 @@ const controlAddRecipe = async function (newRecipe) {
 
 const init = function () {
     recipeView.addHandleRender(controlRecipes);
-    recipeView.addHandlderUpdateServing(controlServings);
+    recipeView.addHandlerUpdateServing(controlServings);
     recipeView.addHandlerAddBookmark(controlAddBookmark);
     searchView.addHandlerSearch(controlSearchResults);
     paginationView.addHanlderClick(controlPagination);

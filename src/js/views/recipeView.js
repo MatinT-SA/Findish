@@ -1,5 +1,5 @@
 import icons from 'url:../../img/icons.svg';
-import { Fraction } from 'fractional';
+import fracty from 'fracty';
 import View from './View';
 
 class RecipeView extends View {
@@ -11,7 +11,7 @@ class RecipeView extends View {
         ['hashchange', 'load'].forEach(ev => window.addEventListener(ev, handler));
     }
 
-    addHandlderUpdateServing(handler) {
+    addHandlerUpdateServing(handler) {
         this._parentElement.addEventListener('click', function (e) {
             const btn = e.target.closest('.btn--update-servings');
             if (!btn) return;
@@ -26,7 +26,7 @@ class RecipeView extends View {
             const btn = e.target.closest('.btn--bookmark');
             if (!btn) return;
             handler();
-        })
+        });
     }
 
     _generateMarkup() {
@@ -110,13 +110,13 @@ class RecipeView extends View {
                 <svg class="recipe__icon">
                     <use href="${icons}#icon-check"></use>
                 </svg>
-                <div class="recipe__quantity">${ing.quantity ? new Fraction(ing.quantity).toString() : ''}</div>
+                <div class="recipe__quantity">${ing.quantity ? fracty(ing.quantity).toString() : ''}</div>
                 <div class="recipe__description">
                     <span class="recipe__unit">${ing.unit}</span>
                     ${ing.description}
                 </div>
             </li>
-        `
+        `;
     }
 }
 
