@@ -36,23 +36,37 @@ const controlRecipes = async function () {
 
 const controlSearchResults = async function () {
     try {
-        // 1) get search query
+        // 1) adjust results per page based on screen width
+        model.adjustResultsPerPage();
+
+        // 2) get search query
         const query = searchView.getQuery();
         if (!query) return;
 
-        // 2) rendering spinner
+        // 3) rendering spinner
         resultsView.renderSpinner();
 
-        // 3) render results
+        // 4) load search results
         await model.loadSearchResults(query);
+
+        // 5) render results for the current page
         resultsView.render(model.getSearchResultsPage());
 
-        // 4) render initial pagination buttons
+        // 4) render initial pagination buttons based on the dynamic resultsPerPage
         paginationView.render(model.state.search);
     } catch (error) {
         resultsView.showPopupError(error);
     }
 };
+
+const controlResize = function () {
+    model.adjustResultsPerPage();
+
+    if (model.state.search.results.length) {
+        resultsView.render(model.getSearchResultsPage());
+        paginationView.render(model.state.search);
+    }
+}
 
 const controlPagination = function (goToPage) {
     // 1) render new results
@@ -123,6 +137,7 @@ const init = function () {
     paginationView.addHanlderClick(controlPagination);
     bookmarksView.addHandlerBookmarks(controlBookmarks);
     addRecipeView.addHandlerUpload(controlAddRecipe);
+    window.addEventListener('resize', controlResize);
 }
 
 init();

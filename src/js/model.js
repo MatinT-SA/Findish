@@ -1,4 +1,4 @@
-import { API_URL, RES_PER_PAGE, API_KEY } from "./config.js";
+import { API_URL, RES_PER_PAGE_DEFAULT, RES_PER_PAGE_MEDIUM, RES_PER_PAGE_SMALL, API_KEY } from "./config.js";
 import { AJAX } from "./helpers.js";
 
 export const state = {
@@ -6,10 +6,23 @@ export const state = {
     search: {
         query: '',
         results: [],
-        resultsPerPage: RES_PER_PAGE,
+        resultsPerPage: RES_PER_PAGE_DEFAULT,
         page: 1,
     },
     bookmarks: [],
+};
+
+export const adjustResultsPerPage = function () {
+    const width = window.innerWidth;
+    if (width < 600) {
+        state.search.resultsPerPage = RES_PER_PAGE_SMALL;
+        return;
+    }
+    if (width < 780) {
+        state.search.resultsPerPage = RES_PER_PAGE_MEDIUM;
+        return;
+    }
+    state.search.resultsPerPage = RES_PER_PAGE_DEFAULT;
 };
 
 const createRecipeObject = function (data) {
