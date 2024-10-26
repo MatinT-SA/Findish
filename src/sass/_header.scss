@@ -45,8 +45,17 @@
   transition: all 0.3s;
 
   @media (max-width: base.$bp-small) {
-    margin-right: 4rem;
-    padding-left: 2rem;
+    margin-right: 5rem;
+    padding-left: 5rem;
+  }
+
+  @media (max-width: base.$bp-smallest) {
+    margin-right: 7rem;
+    padding-left: 6rem;
+  }
+
+  @media (max-width: base.$bp-smallest-400) {
+    margin-right: 2.5rem;
   }
 
   &:focus-within {
@@ -70,7 +79,7 @@
       color: base.$color-grey-light-3;
     }
 
-    @media only screen and (max-width: base.$bp-medium) {
+    @media (max-width: base.$bp-medium) {
       width: auto;
 
       &::placeholder {
@@ -78,9 +87,21 @@
       }
     }
 
-    @media (max-width: base.$bp-tablet) {
-      width: 15rem;
+    @media (max-width: base.$bp-smallest) {
+      width: 10rem;
     }
+
+    // @media (max-width: base.$bp-tablet) {
+    //   width: 15rem;
+    // }
+
+    // @media (max-width: base.$bp-small) {
+    //   width: 24rem;
+    // }
+
+    // @media (max-width: base.$bp-smallest) {
+    //   width: 10rem;
+    // }
   }
 
   &__btn {
