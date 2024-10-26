@@ -92,18 +92,6 @@
     @media (max-width: base.$bp-smallest) {
       width: 10rem;
     }
-
-    // @media (max-width: base.$bp-tablet) {
-    //   width: 15rem;
-    // }
-
-    // @media (max-width: base.$bp-small) {
-    //   width: 24rem;
-    // }
-
-    // @media (max-width: base.$bp-smallest) {
-    //   width: 10rem;
-    // }
   }
 
   &__btn {
@@ -161,8 +149,12 @@
       margin-right: 0.7rem;
       transform: translateY(-1px);
 
-      @media (max-width: base.$bp-small) {
+      @media (max-width: base.$bp-tablet) {
         display: none;
+      }
+
+      @media (max-width: base.$bp-small) {
+        display: block;
       }
     }
 
