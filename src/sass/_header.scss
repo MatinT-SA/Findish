@@ -44,6 +44,11 @@
   padding-left: 3rem;
   transition: all 0.3s;
 
+  @media (max-width: base.$bp-small) {
+    margin-right: 4rem;
+    padding-left: 2rem;
+  }
+
   &:focus-within {
     transform: translateY(-2px);
     box-shadow: 0 0.7rem 3rem rgba(base.$color-grey-dark-1, 0.08);
