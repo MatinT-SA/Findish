@@ -86,7 +86,7 @@ body {
     'head head'
     'results recipe';
 
-  @media only screen and (max-width: $bp-large) {
+  @media (max-width: $bp-large) {
     max-width: 100%;
     margin: 0;
     border-radius: 0;
@@ -98,6 +98,8 @@ body {
       'head'
       'recipe'
       'results';
+
+    overflow-y: auto;
   }
 
   .header {
