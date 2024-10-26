@@ -9,6 +9,10 @@ $color-green-3: rgba(65, 205, 11, 1);
 .recipe {
   background-color: base.$color-grey-light-1;
 
+  @media (max-width: base.$bp-small) {
+    margin-top: 4rem;
+  }
+
   ///////////
   // FIGURE
   &__fig {
@@ -53,6 +57,14 @@ $color-green-3: rgba(65, 205, 11, 1);
     line-height: 1.95;
     text-align: center;
 
+    @media (max-width: base.$bp-medium) {
+      width: 75%;
+    }
+
+    @media (max-width: base.$bp-smallest) {
+      font-size: 2rem;
+    }
+
     span {
       -webkit-box-decoration-break: clone;
       box-decoration-break: clone;
@@ -60,10 +72,6 @@ $color-green-3: rgba(65, 205, 11, 1);
       background-image: linear-gradient(to right bottom,
           base.$color-grad-1,
           base.$color-grad-2 );
-    }
-
-    @media only screen and (max-width: base.$bp-medium) {
-      width: 75%;
     }
   }
 
@@ -73,6 +81,17 @@ $color-green-3: rgba(65, 205, 11, 1);
     display: flex;
     align-items: center;
     padding: 7.5rem 8rem 3.5rem 8rem;
+
+    @media (max-width: base.$bp-small) {
+      padding: 5rem 1rem 3rem;
+    }
+
+    @media (max-width: base.$bp-smallest) {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto auto;
+      gap: 3rem 1rem;
+    }
   }
 
   &__info {
@@ -80,6 +99,10 @@ $color-green-3: rgba(65, 205, 11, 1);
     text-transform: uppercase;
     display: flex;
     align-items: center;
+
+    @media (max-width: base.$bp-smallest) {
+      justify-content: center;
+    }
 
     &:not(:last-child) {
       margin-right: 4.5rem;
@@ -145,6 +168,10 @@ $color-green-3: rgba(65, 205, 11, 1);
     grid-template-columns: 1fr 1fr;
     gap: 2.5rem 3rem;
     list-style: none;
+
+    @media (max-width: base.$bp-smallest) {
+      grid-template-columns: 1fr;
+    }
   }
 
   &__ingredient {
