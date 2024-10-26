@@ -1,11 +1,24 @@
 @use 'base';
 
 .header {
-  grid-area: head;
   background-color: base.$color-grey-light-1;
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  @media (max-width: base.$bp-small) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+
+    .nav {
+      grid-column: 1/ -1;
+
+      &__list {
+        justify-content: space-evenly;
+      }
+    }
+  }
 
   &__logo {
     margin-left: 4rem;
@@ -119,6 +132,10 @@
       fill: base.$color-primary;
       margin-right: 0.7rem;
       transform: translateY(-1px);
+
+      @media (max-width: base.$bp-small) {
+        display: none;
+      }
     }
 
     &:focus {

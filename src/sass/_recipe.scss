@@ -34,6 +34,7 @@ $color-green-3: rgba(65, 205, 11, 1);
 
   &__img {
     width: 100%;
+    max-width: 100%;
     display: block;
     height: 100%;
     object-fit: cover;
