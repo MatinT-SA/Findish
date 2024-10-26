@@ -57,7 +57,7 @@
   }
 
   @media (max-width: base.$bp-smallest-400) {
-    margin-right: 2.5rem;
+    margin-right: 6rem;
   }
 
   &:focus-within {
@@ -91,6 +91,10 @@
 
     @media (max-width: base.$bp-smallest) {
       width: 10rem;
+    }
+
+    @media (max-width: base.$bp-smallest-400) {
+      width: 7rem;
     }
   }
 
@@ -171,7 +175,6 @@
 .bookmarks {
   padding: 1rem 0;
   position: absolute;
-  // right: 0;
   right: -2.5rem;
   z-index: 10;
   width: 40rem;
@@ -181,6 +184,10 @@
   visibility: hidden;
   opacity: 0;
   transition: all 0.5s 0.2s;
+
+  @media (max-width: base.$bp-smallest-400) {
+    width: 30rem;
+  }
 
   &__list {
     list-style: none;
