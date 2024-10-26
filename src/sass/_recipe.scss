@@ -9,6 +9,10 @@ $color-green-3: rgba(65, 205, 11, 1);
 .recipe {
   background-color: base.$color-grey-light-1;
 
+  @media (max-width: base.$bp-small) {
+    margin-top: 4rem;
+  }
+
   ///////////
   // FIGURE
   &__fig {

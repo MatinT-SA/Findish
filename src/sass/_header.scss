@@ -10,9 +10,11 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: auto auto;
+    height: 14rem;
 
     .nav {
       grid-column: 1/ -1;
+      padding-bottom: 1rem;
 
       &__list {
         justify-content: space-evenly;
