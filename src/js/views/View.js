@@ -63,6 +63,15 @@ export default class View {
             `;
         this._clear();
         this._parentElement.insertAdjacentHTML('afterbegin', markup);
+
+        this.spinnerElement = this._parentElement.querySelector('.spinner');
+    }
+
+    clearSpinner() {
+        if (this.spinnerElement) {
+            this.spinnerElement.remove();
+            this.spinnerElement = null;
+        }
     }
 
     renderError(message = this._errorMessage) {

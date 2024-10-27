@@ -132,26 +132,27 @@ const controlAddRecipe = async function (newRecipe) {
 
 const controlRemoveRecipe = async function (recipeId) {
     try {
-        // render spinner for recipeView and searchView
+        // render spinner
         recipeView.renderSpinner();
-        resultsView.renderSpinner();
 
-        // removing corresponding recipe
-        await model.removeRecipe(recipeId);
+        // storing success remove operation in a variable
+        const success = await model.removeRecipe(recipeId);
 
-        if (!model.state.recipe) {
-            return recipeView.renderError('No recipe found');
+        // displaying relevant messages plus rendering resultsView
+        if (success) {
+            recipeView.showPopupMessage('Recipe successfully removed');
+            resultsView.render(model.getSearchResultsPage());
+        } else {
+            recipeView.showPopupError('Recipe not found or could not be removed.');
         }
-
-        // render updated recipe
-        recipeView.render(model.state.recipe);
-
-        // Render resultsView to show updated search results
-        resultsView.render(model.getSearchResultsPage());
     } catch (error) {
-        recipeView.showPopupError('Couldn\'t remove the recipe');
+        recipeView.showPopupError('An error occurred while trying to remove the recipe.');
+    } finally {
+        // clearing spinner in any way
+        recipeView.clearSpinner();
+        resultsView.clearSpinner();
     }
-}
+};
 
 const init = function () {
     recipeView.addHandlerRender(controlRecipes);

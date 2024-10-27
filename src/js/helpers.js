@@ -10,21 +10,25 @@ const timeout = function (s) {
 
 export const AJAX = async function (url, uploadData = undefined, method = 'GET') {
     try {
-        const fetchOptions = uploadData ? {
-            method: method,
+        const fetchOptions = {
+            method,
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(uploadData),
-        } : { method: method };
+        };
 
-        const fetchUrl = fetch(url, fetchOptions);
-        const res = await Promise.race([fetchUrl, timeout(TIMEOUT_SEC)]);
-        const data = await res.json();
+        if (uploadData) fetchOptions.body = JSON.stringify(uploadData);
 
-        if (!res.ok) throw new Error(`${data.message} (${res.status})`);
-        return data;
+        const response = await fetch(url, fetchOptions);
+
+        if (!response.ok) {
+            const errorMessage = await response.text();
+            throw new Error(`Failed to fetch from server: ${response.status} - ${errorMessage}`);
+        }
+
+        return response.status === 204 ? null : await response.json();
     } catch (error) {
+        console.error('AJAX error:', error);
         throw error;
     }
 };

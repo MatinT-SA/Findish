@@ -172,14 +172,23 @@ export const removeRecipe = async function (recipeId) {
         await AJAX(`${API_URL}/${recipeId}?key=${API_KEY}`, undefined, 'DELETE');
 
         // Remove the recipe from local state
-        if (state.recipe.id === recipeId) state.recipe = null;
+        if (state.recipe && state.recipe.id === recipeId) {
+            state.recipe = null;
+        }
 
         // Also remove from bookmarks if it exists there
         state.bookmarks = state.bookmarks.filter(bookmark => bookmark.id !== recipeId);
 
         // Update bookmarks in local storage if necessary
         presistBookmarks();
+
+        // Return a success indicator
+        return true;
     } catch (error) {
-        throw error;
+        // Handle error gracefully without throwing
+        if (error.message.includes('404')) {
+            return false;
+        }
+        return false;
     }
-}
+};
