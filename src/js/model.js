@@ -52,7 +52,6 @@ export const loadRecipe = async function (id) {
             state.recipe.bookmarked = false;
         }
     } catch (error) {
-        console.error(`${error} 🛑`);
         throw error;
     }
 }
@@ -159,10 +158,28 @@ export const uploadRecipe = async function (newRecipe) {
             ingredients,
         };
 
-        const data = await AJAX(`${API_URL}?key=${API_KEY}`, recipe);
+        const data = await AJAX(`${API_URL}?key=${API_KEY}`, recipe, 'POST');
         state.recipe = createRecipeObject(data);
         addBookmark(state.recipe);
     } catch (err) {
         throw err;
+    }
+}
+
+export const removeRecipe = async function (recipeId) {
+    try {
+        // Send DELETE request to the server to remove the recipe
+        await AJAX(`${API_URL}/${recipeId}?key=${API_KEY}`, undefined, 'DELETE');
+
+        // Remove the recipe from local state
+        if (state.recipe.id === recipeId) state.recipe = null;
+
+        // Also remove from bookmarks if it exists there
+        state.bookmarks = state.bookmarks.filter(bookmark => bookmark.id !== recipeId);
+
+        // Update bookmarks in local storage if necessary
+        presistBookmarks();
+    } catch (error) {
+        throw error;
     }
 }

@@ -101,6 +101,7 @@ const controlBookmarks = function () {
 
 const controlAddRecipe = async function (newRecipe) {
     try {
+        // render spinner for recipe view
         recipeView.renderSpinner();
 
         // Upload new recipe data
@@ -129,14 +130,39 @@ const controlAddRecipe = async function (newRecipe) {
     }
 }
 
+const controlRemoveRecipe = async function (recipeId) {
+    try {
+        // render spinner for recipeView and searchView
+        recipeView.renderSpinner();
+        resultsView.renderSpinner();
+
+        // removing corresponding recipe
+        await model.removeRecipe(recipeId);
+
+        if (!model.state.recipe) {
+            return recipeView.renderError('No recipe found');
+        }
+
+        // render updated recipe
+        recipeView.render(model.state.recipe);
+
+        // Render resultsView to show updated search results
+        resultsView.render(model.getSearchResultsPage());
+    } catch (error) {
+        recipeView.showPopupError('Couldn\'t remove the recipe');
+    }
+}
+
 const init = function () {
-    recipeView.addHandleRender(controlRecipes);
+    recipeView.addHandlerRender(controlRecipes);
     recipeView.addHandlerUpdateServing(controlServings);
     recipeView.addHandlerAddBookmark(controlAddBookmark);
     searchView.addHandlerSearch(controlSearchResults);
     paginationView.addHanlderClick(controlPagination);
     bookmarksView.addHandlerBookmarks(controlBookmarks);
     addRecipeView.addHandlerUpload(controlAddRecipe);
+    recipeView.addHandlerRemoveRecipe(controlRemoveRecipe);
+
     window.addEventListener('resize', controlResize);
 }
 
