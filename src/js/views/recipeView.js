@@ -7,6 +7,17 @@ class RecipeView extends View {
     _errorMessage = 'Couldn\'t find the recipe. Try another one';
     _successMessage = '';
 
+    addHandlerEditRecipe(handler) {
+        this._parentElement.addEventListener('click', function (e) {
+            const btn = e.target.closest('.btn--edit');
+            if (!btn) return;
+
+            const recipeId = this._data.id;
+            const updatedRecipe = this.data;
+            handler(recipeId, updatedRecipe);
+        }.bind(this))
+    }
+
     addHandlerRemoveRecipe(handler) {
         this._parentElement.addEventListener('click', function (e) {
             const btn = e.target.closest('.btn--delete');
@@ -88,6 +99,14 @@ class RecipeView extends View {
                     <button class="btn--round btn--delete">
                         <svg>
                             <use href="${icons}#icon-delete"></use>
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="recipe__edit ${this._data.key ? '' : 'hidden'}">
+                    <button class="btn--round btn--edit">
+                        <svg>
+                            <use href="${icons}#icon-edit"></use>
                         </svg>
                     </button>
                 </div>

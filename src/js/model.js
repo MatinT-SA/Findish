@@ -133,31 +133,32 @@ const clearBookmarks = function () {
 }
 clearBookmarks();
 
+const createRecipeData = function (recipeInput) {
+    const ingredients = Object.entries(recipeInput)
+        .filter(entry => entry[0].startsWith('ingredient') && entry[1] !== '')
+        .map(ing => {
+            const ingArr = ing[1].split(',').map(el => el.trim());
+            if (ingArr.length !== 3) {
+                throw new Error('Wrong ingredient format! Please use the correct format');
+            }
+            const [quantity, unit, description] = ingArr;
+            return { quantity: quantity ? +quantity : null, unit, description };
+        });
+
+    return {
+        title: recipeInput.title,
+        source_url: recipeInput.sourceUrl,
+        image_url: recipeInput.image,
+        publisher: recipeInput.publisher,
+        cooking_time: +recipeInput.cookingTime,
+        servings: +recipeInput.servings,
+        ingredients,
+    };
+};
+
 export const uploadRecipe = async function (newRecipe) {
     try {
-        const ingredients = Object.entries(newRecipe)
-            .filter(entry => entry[0].startsWith('ingredient') && entry[1] !== '')
-            .map(ing => {
-                const ingArr = ing[1].split(',').map(el => el.trim());
-                if (ingArr.length !== 3) {
-                    throw new Error('Wrong ingredient format! Please use the correct format');
-                };
-
-                const [quantity, unit, description] = ingArr;
-
-                return { quantity: quantity ? +quantity : null, unit, description };
-            });
-
-        const recipe = {
-            title: newRecipe.title,
-            source_url: newRecipe.sourceUrl,
-            image_url: newRecipe.image,
-            publisher: newRecipe.publisher,
-            cooking_time: +newRecipe.cookingTime,
-            servings: +newRecipe.servings,
-            ingredients,
-        };
-
+        const recipe = createRecipeData(newRecipe);
         const data = await AJAX(`${API_URL}?key=${API_KEY}`, recipe, 'POST');
         state.recipe = createRecipeObject(data);
         addBookmark(state.recipe);
@@ -190,5 +191,28 @@ export const removeRecipe = async function (recipeId) {
             return false;
         }
         return false;
+    }
+};
+
+export const editRecipe = async function (recipeId, updatedRecipe) {
+    try {
+        const recipe = createRecipeData(updatedRecipe);
+        // Send PUT/PATCH request to update the recipe on the server
+        const data = await AJAX(`${API_URL}/${recipeId}?key=${API_KEY}`, recipe, 'PUT');
+
+        // Update the state with the new recipe data
+        state.recipe = createRecipeObject(data);
+
+        // If the recipe is bookmarked, update it in the bookmarks as well
+        const bookmarkIndex = state.bookmarks.findIndex(bookmark => bookmark.id === recipeId);
+        if (bookmarkIndex !== -1) state.bookmarks[bookmarkIndex] = state.recipe;
+
+        // Persist updated bookmarks to local storage if needed
+        presistBookmarks();
+
+        return true; // Return success indicator
+    } catch (err) {
+        console.error('Failed to edit recipe:', err);
+        throw err; // Throw error to handle it in the UI if necessary
     }
 };
