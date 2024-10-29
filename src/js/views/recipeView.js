@@ -12,10 +12,8 @@ class RecipeView extends View {
             const btn = e.target.closest('.btn--edit');
             if (!btn) return;
 
-            const recipeId = this._data.id;
-            const updatedRecipe = this.data;
-            handler(recipeId, updatedRecipe);
-        }.bind(this))
+            handler(this._data.id);
+        }.bind(this));
     }
 
     addHandlerRemoveRecipe(handler) {
