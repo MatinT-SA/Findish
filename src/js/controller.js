@@ -161,6 +161,7 @@ const controlEditRecipe = async function (recipeId) {
 
         // Load recipe data
         await model.loadRecipe(recipeId);
+        console.log(recipeId);
 
         // Populate the add recipe form with current recipe data
         addRecipeView.populateForm(model.state.recipe);
