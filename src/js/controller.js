@@ -143,43 +143,41 @@ const controlRemoveRecipe = async function (recipeId) {
     }
 };
 
-<<<<<<< HEAD
-const controlEditRecipe = async function (recipeId) {
-    try {
-        recipeView.renderSpinner();
-        await model.loadRecipe(recipeId);
-        addRecipeView.populateForm(model.state.recipe);
-        addRecipeView._toggleWindow();
+// In controller.js
 
-        addRecipeView.addHandlerUpload(async (newRecipe) => {
-            try {
-                const success = await model.editRecipe(recipeId, newRecipe); // This should internally call AJAX
-                if (success) {
-                    recipeView.render(model.state.recipe);
-                    bookmarksView.render(model.state.bookmarks);
-                    window.history.pushState(null, '', `#${model.state.recipe.id}`);
-                    addRecipeView.showPopupMessage('Recipe successfully updated');
-                    setTimeout(() => {
-                        addRecipeView._toggleWindow();
-                    }, MODAL_CLOSE_SEC * 1000);
-                } else {
-                    recipeView.showPopupError('Failed to update recipe.');
-                }
-            } catch (error) {
-                recipeView.showPopupError(error.message);
-            }
-        });
+const controlEditRecipe = async function (updatedRecipe) {
+    try {
+        addRecipeView.renderSpinner(); // Show spinner for feedback
+
+        // Get the recipe ID from the modal's data attribute
+        const recipeId = document.querySelector('.add-recipe-window').getAttribute('data-recipe-id');
+
+        // Ensure the recipe ID is included in the updatedRecipe object
+        updatedRecipe.id = recipeId;
+
+        // Check if the ID exists
+        if (!updatedRecipe.id) {
+            throw new Error('Recipe ID is missing');
+        }
+
+        await model.updateRecipe(updatedRecipe); // Call the model to update the recipe
+
+        recipeView.render(model.state.recipe); // Render the updated recipe
+        bookmarksView.render(model.state.bookmarks); // Update bookmarks if needed
+        window.history.pushState(null, '', `#${model.state.recipe.id}`); // Update URL
+
+        addRecipeView.showPopupMessage(); // Show success message
+
+        setTimeout(() => {
+            addRecipeView._toggleWindow(); // Close the modal
+        }, MODAL_CLOSE_SEC * 1000);
     } catch (err) {
-        recipeView.showPopupError('An error occurred while trying to edit the recipe.');
+        addRecipeView.renderError(err.message); // Handle error if update fails
     } finally {
-        recipeView.clearSpinner();
+        addRecipeView.clearSpinner(); // Clear spinner
     }
 };
 
-
-
-=======
->>>>>>> parent of ae619c4 (first phase of edit button implementation for recipe)
 const init = function () {
     recipeView.addHandlerRender(controlRecipes);
     recipeView.addHandlerUpdateServing(controlServings);
@@ -187,8 +185,15 @@ const init = function () {
     searchView.addHandlerSearch(controlSearchResults);
     paginationView.addHanlderClick(controlPagination);
     bookmarksView.addHandlerBookmarks(controlBookmarks);
-    addRecipeView.addHandlerUpload(controlAddRecipe);
+    addRecipeView.addHandlerUpload(data => {
+        if (data.id) {
+            controlEditRecipe(data);
+        } else {
+            controlAddRecipe(data);
+        }
+    });
     recipeView.addHandlerRemoveRecipe(controlRemoveRecipe);
+    recipeView.addHandlerEdit(controlEditRecipe);
 
     window.addEventListener('resize', controlResize);
 }

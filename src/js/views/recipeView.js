@@ -7,6 +7,57 @@ class RecipeView extends View {
     _errorMessage = 'Couldn\'t find the recipe. Try another one';
     _successMessage = '';
 
+    addHandlerEdit(handler) {
+        this._parentElement.addEventListener('click', function (e) {
+            const btn = e.target.closest('.btn--edit');
+            if (!btn) return;
+
+            // Get the ID directly from the current recipe's data
+            const recipeId = this._data.id; // Access the current recipe ID
+
+            if (!recipeId) {
+                throw new Error('Recipe ID is missing');
+            }
+
+            handler(recipeId); // Call the handler with the recipe ID
+        }.bind(this)); // Bind `this` to ensure it refers to RecipeView
+    }
+
+
+    // Add a new method to populate the modal for editing
+    populateEditModal(recipe) {
+        // Assume you have a modal element already available in your DOM
+        const modal = document.querySelector('.add-recipe-window');
+        modal.classList.remove('hidden'); // Show the modal
+
+        // Populate modal fields with recipe data
+        document.querySelector('input[name="title"]').value = recipe.title;
+        document.querySelector('input[name="sourceUrl"]').value = recipe.sourceUrl;
+        document.querySelector('input[name="image"]').value = recipe.image;
+        document.querySelector('input[name="publisher"]').value = recipe.publisher;
+        document.querySelector('input[name="cookingTime"]').value = recipe.cookingTime;
+        document.querySelector('input[name="servings"]').value = recipe.servings;
+
+        // Populate ingredients
+        recipe.ingredients.forEach((ing, index) => {
+            const ingredientInput = document.querySelector(`input[name="ingredient-${index + 1}"]`);
+            if (ingredientInput) {
+                ingredientInput.value = ing;
+            }
+        });
+
+        // If the recipe has more ingredients than inputs, clear the rest
+        for (let i = recipe.ingredients.length; i < 6; i++) {
+            const ingredientInput = document.querySelector(`input[name="ingredient-${i + 1}"]`);
+            if (ingredientInput) {
+                ingredientInput.value = '';
+            }
+        }
+
+        // Set the recipe ID in the modal's data attribute
+        modal.dataset.recipeId = recipe.id;
+    }
+
     addHandlerRemoveRecipe(handler) {
         this._parentElement.addEventListener('click', function (e) {
             const btn = e.target.closest('.btn--delete');
@@ -88,6 +139,14 @@ class RecipeView extends View {
                     <button class="btn--round btn--delete">
                         <svg>
                             <use href="${icons}#icon-delete"></use>
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="recipe__edit ${this._data.key ? '' : 'hidden'}">
+                    <button class="btn--round btn--edit">
+                        <svg>
+                            <use href="${icons}#icon-edit"></use>
                         </svg>
                     </button>
                 </div>
