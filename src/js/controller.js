@@ -143,6 +143,7 @@ const controlRemoveRecipe = async function (recipeId) {
     }
 };
 
+<<<<<<< HEAD
 const controlEditRecipe = async function (recipeId) {
     try {
         recipeView.renderSpinner();
@@ -177,6 +178,8 @@ const controlEditRecipe = async function (recipeId) {
 
 
 
+=======
+>>>>>>> parent of ae619c4 (first phase of edit button implementation for recipe)
 const init = function () {
     recipeView.addHandlerRender(controlRecipes);
     recipeView.addHandlerUpdateServing(controlServings);
@@ -186,7 +189,6 @@ const init = function () {
     bookmarksView.addHandlerBookmarks(controlBookmarks);
     addRecipeView.addHandlerUpload(controlAddRecipe);
     recipeView.addHandlerRemoveRecipe(controlRemoveRecipe);
-    recipeView.addHandlerEditRecipe(controlEditRecipe);
 
     window.addEventListener('resize', controlResize);
 }
