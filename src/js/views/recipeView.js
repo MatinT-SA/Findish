@@ -24,10 +24,10 @@ class RecipeView extends View {
         modal.classList.remove('hidden'); // Ensure modal opens
 
         document.querySelector('input[name="title"]').value = recipe.title;
-        document.querySelector('input[name="sourceUrl"]').value = recipe.source_url;
-        document.querySelector('input[name="image"]').value = recipe.image_url;
+        document.querySelector('input[name="sourceUrl"]').value = recipe.sourceUrl;
+        document.querySelector('input[name="image"]').value = recipe.image;
         document.querySelector('input[name="publisher"]').value = recipe.publisher;
-        document.querySelector('input[name="cookingTime"]').value = recipe.cooking_time;
+        document.querySelector('input[name="cookingTime"]').value = recipe.cookingTime;
         document.querySelector('input[name="servings"]').value = recipe.servings;
 
         recipe.ingredients.forEach((ing, index) => {
