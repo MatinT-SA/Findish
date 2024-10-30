@@ -143,40 +143,19 @@ const controlRemoveRecipe = async function (recipeId) {
     }
 };
 
-// In controller.js
 
-const controlEditRecipe = async function (updatedRecipe) {
+const controlEditRecipe = async function (recipeId) {
     try {
-        addRecipeView.renderSpinner(); // Show spinner for feedback
+        const recipe = model.state.recipe;
+        if (!recipe) throw new Error('Recipe not found');
 
-        // Get the recipe ID from the modal's data attribute
-        const recipeId = document.querySelector('.add-recipe-window').getAttribute('data-recipe-id');
-
-        // Ensure the recipe ID is included in the updatedRecipe object
-        updatedRecipe.id = recipeId;
-
-        // Check if the ID exists
-        if (!updatedRecipe.id) {
-            throw new Error('Recipe ID is missing');
-        }
-
-        await model.updateRecipe(updatedRecipe); // Call the model to update the recipe
-
-        recipeView.render(model.state.recipe); // Render the updated recipe
-        bookmarksView.render(model.state.bookmarks); // Update bookmarks if needed
-        window.history.pushState(null, '', `#${model.state.recipe.id}`); // Update URL
-
-        addRecipeView.showPopupMessage(); // Show success message
-
-        setTimeout(() => {
-            addRecipeView._toggleWindow(); // Close the modal
-        }, MODAL_CLOSE_SEC * 1000);
+        recipeView.populateEditModal(recipe); // call the method on `recipeView`
     } catch (err) {
-        addRecipeView.renderError(err.message); // Handle error if update fails
-    } finally {
-        addRecipeView.clearSpinner(); // Clear spinner
+        console.error('Error editing recipe:', err);
+        recipeView.renderError(err.message); // ensure `renderError` exists in `recipeView`
     }
 };
+
 
 const init = function () {
     recipeView.addHandlerRender(controlRecipes);
