@@ -133,6 +133,7 @@ const clearBookmarks = function () {
 }
 clearBookmarks();
 
+<<<<<<< HEAD
 export const uploadRecipe = async function (newRecipe) {
     try {
         const ingredients = Object.entries(newRecipe)
@@ -155,6 +156,33 @@ export const uploadRecipe = async function (newRecipe) {
             publisher: newRecipe.publisher,
             cooking_time: +newRecipe.cookingTime,
             servings: +newRecipe.servings,
+=======
+const extractIngredients = (recipeData) => {
+    return Object.entries(recipeData)
+        .filter(entry => entry[0].startsWith('ingredient') && entry[1] !== '')
+        .map(ing => {
+            const ingArr = ing[1].split(',').map(el => el.trim());
+            if (ingArr.length !== 3) {
+                throw new Error('Wrong ingredient format! Please use the correct format');
+            };
+
+            const [quantity, unit, description] = ingArr;
+            return { quantity: quantity ? +quantity : null, unit, description };
+        });
+};
+
+export const uploadRecipe = async function (newRecipe) {
+    try {
+        const ingredients = extractIngredients(newRecipe); // Use the utility function
+
+        const recipe = {
+            title: newRecipe.title,
+            source_url: newRecipe.sourceUrl, // Check if sourceUrl is set correctly
+            image_url: newRecipe.image, // Check if image is set correctly
+            publisher: newRecipe.publisher, // Check if publisher is set correctly
+            cooking_time: +newRecipe.cookingTime, // Ensure this is being converted to a number
+            servings: +newRecipe.servings, // Ensure this is being converted to a number
+>>>>>>> edit
             ingredients,
         };
 
@@ -165,6 +193,7 @@ export const uploadRecipe = async function (newRecipe) {
         throw err;
     }
 }
+
 
 export const removeRecipe = async function (recipeId) {
     try {
@@ -192,3 +221,17 @@ export const removeRecipe = async function (recipeId) {
         return false;
     }
 };
+<<<<<<< HEAD
+=======
+
+// Assuming your model looks something like this
+export const updateRecipe = async function (updatedRecipe) {
+    try {
+        const response = await AJAX(`${API_URL}/recipes/${updatedRecipe.id}`, updatedRecipe, 'PUT');
+        // Update the state with the new data
+        state.recipe = response;
+    } catch (error) {
+        throw error; // Handle the error accordingly
+    }
+};
+>>>>>>> edit

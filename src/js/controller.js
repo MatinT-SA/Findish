@@ -143,6 +143,20 @@ const controlRemoveRecipe = async function (recipeId) {
     }
 };
 
+
+const controlEditRecipe = async function (recipeId) {
+    try {
+        const recipe = model.state.recipe;
+        if (!recipe) throw new Error('Recipe not found');
+
+        recipeView.populateEditModal(recipe); // call the method on `recipeView`
+    } catch (err) {
+        console.error('Error editing recipe:', err);
+        recipeView.renderError(err.message); // ensure `renderError` exists in `recipeView`
+    }
+};
+
+
 const init = function () {
     recipeView.addHandlerRender(controlRecipes);
     recipeView.addHandlerUpdateServing(controlServings);
@@ -150,8 +164,15 @@ const init = function () {
     searchView.addHandlerSearch(controlSearchResults);
     paginationView.addHanlderClick(controlPagination);
     bookmarksView.addHandlerBookmarks(controlBookmarks);
-    addRecipeView.addHandlerUpload(controlAddRecipe);
+    addRecipeView.addHandlerUpload(data => {
+        if (data.id) {
+            controlEditRecipe(data);
+        } else {
+            controlAddRecipe(data);
+        }
+    });
     recipeView.addHandlerRemoveRecipe(controlRemoveRecipe);
+    recipeView.addHandlerEdit(controlEditRecipe);
 
     window.addEventListener('resize', controlResize);
 }

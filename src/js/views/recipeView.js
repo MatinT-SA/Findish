@@ -7,6 +7,41 @@ class RecipeView extends View {
     _errorMessage = 'Couldn\'t find the recipe. Try another one';
     _successMessage = '';
 
+<<<<<<< HEAD
+=======
+    addHandlerEdit(handler) {
+        this._parentElement.addEventListener('click', function (e) {
+            const btn = e.target.closest('.btn--edit');
+            if (!btn) return;
+
+            const recipeId = this._data.id;
+            if (!recipeId) throw new Error('Recipe ID is missing');
+
+            handler(recipeId); // Ensure the ID is passed here
+        }.bind(this));
+    }
+
+    populateEditModal(recipe) {
+        const modal = document.querySelector('.add-recipe-window');
+        modal.classList.remove('hidden'); // Ensure modal opens
+
+        document.querySelector('input[name="title"]').value = recipe.title;
+        document.querySelector('input[name="sourceUrl"]').value = recipe.source_url;
+        document.querySelector('input[name="image"]').value = recipe.image_url;
+        document.querySelector('input[name="publisher"]').value = recipe.publisher;
+        document.querySelector('input[name="cookingTime"]').value = recipe.cooking_time;
+        document.querySelector('input[name="servings"]').value = recipe.servings;
+
+        recipe.ingredients.forEach((ing, index) => {
+            const ingredientInput = document.querySelector(`input[name="ingredient-${index + 1}"]`);
+            if (ingredientInput) ingredientInput.value = `${ing.quantity},${ing.unit},${ing.description}`;
+        });
+
+        modal.dataset.recipeId = recipe.id;
+    }
+
+
+>>>>>>> edit
     addHandlerRemoveRecipe(handler) {
         this._parentElement.addEventListener('click', function (e) {
             const btn = e.target.closest('.btn--delete');
