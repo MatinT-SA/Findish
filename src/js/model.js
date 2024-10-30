@@ -131,6 +131,7 @@ init();
 const clearBookmarks = function () {
     localStorage.clear('bookmarks');
 }
+
 clearBookmarks();
 
 const extractIngredients = (recipeData) => {
@@ -169,7 +170,6 @@ export const uploadRecipe = async function (newRecipe) {
     }
 }
 
-
 export const removeRecipe = async function (recipeId) {
     try {
         // Send DELETE request to the server to remove the recipe
@@ -198,11 +198,24 @@ export const removeRecipe = async function (recipeId) {
 };
 
 // Assuming your model looks something like this
-export const updateRecipe = async function (updatedRecipe) {
+export const updateRecipe = async function (recipeId, updatedRecipe) {
     try {
-        const response = await AJAX(`${API_URL}/recipes/${updatedRecipe.id}`, updatedRecipe, 'PUT');
+        console.log('Updating recipe with data:', updatedRecipe);
+        const ingredients = extractIngredients(updatedRecipe); // Use the utility function
+
+        const recipe = {
+            title: updatedRecipe.title,
+            source_url: updatedRecipe.sourceUrl, // Check if sourceUrl is set correctly
+            image_url: updatedRecipe.image, // Check if image is set correctly
+            publisher: updatedRecipe.publisher, // Check if publisher is set correctly
+            cooking_time: +updatedRecipe.cookingTime, // Ensure this is being converted to a number
+            servings: +updatedRecipe.servings, // Ensure this is being converted to a number
+            ingredients,
+        };
+
+        const data = await AJAX(`${API_URL}/${recipeId}?key=${API_KEY}`, recipe, 'PUT');
         // Update the state with the new data
-        state.recipe = response;
+        state.recipe = data;
     } catch (error) {
         throw error; // Handle the error accordingly
     }
