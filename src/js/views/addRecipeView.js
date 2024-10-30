@@ -33,11 +33,6 @@ class AddRecipeView extends View {
         this._parentElement.addEventListener('submit', function (e) {
             e.preventDefault();
 
-<<<<<<< HEAD
-            // Use this._parentElement to create FormData
-            const dataArr = [...new FormData(this._parentElement)];
-            const data = Object.fromEntries(dataArr);
-=======
             const dataArray = [...new FormData(this)];
             const data = Object.fromEntries(dataArray);
 
@@ -48,13 +43,10 @@ class AddRecipeView extends View {
             }
 
             // Call the handler function with the data object
->>>>>>> edit
             handler(data);
         });
     }
 
-<<<<<<< HEAD
-=======
 
     renderForm(recipe = {}) {
         const form = this._parentElement;
@@ -87,7 +79,6 @@ class AddRecipeView extends View {
         return ingredientInputs;
     }
 
->>>>>>> edit
     _generateMarkup() { }
 }
 

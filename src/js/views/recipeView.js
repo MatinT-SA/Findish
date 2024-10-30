@@ -7,8 +7,6 @@ class RecipeView extends View {
     _errorMessage = 'Couldn\'t find the recipe. Try another one';
     _successMessage = '';
 
-<<<<<<< HEAD
-=======
     addHandlerEdit(handler) {
         this._parentElement.addEventListener('click', function (e) {
             const btn = e.target.closest('.btn--edit');
@@ -41,7 +39,6 @@ class RecipeView extends View {
     }
 
 
->>>>>>> edit
     addHandlerRemoveRecipe(handler) {
         this._parentElement.addEventListener('click', function (e) {
             const btn = e.target.closest('.btn--delete');
