@@ -47,7 +47,6 @@ class AddRecipeView extends View {
         });
     }
 
-
     renderForm(recipe = {}) {
         const form = this._parentElement;
         // Populate the form fields with recipe data

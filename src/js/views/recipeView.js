@@ -4,13 +4,33 @@ import View from './View';
 
 class RecipeView extends View {
     _parentElement = document.querySelector('.recipe');
+    _overlay = document.querySelector('.overlay');
+    _window = document.querySelector('.add-recipe-window');
+    _btnOpen = document.querySelector('.nav__btn--add-recipe');
+    _btnClose = document.querySelector('.btn--close-modal');
     _errorMessage = 'Couldn\'t find the recipe. Try another one';
-    _successMessage = '';
+    _successMessage = 'Recipe was successfully updated';
+
+    _toggleWindow() {
+        this._overlay.classList.toggle('hidden');
+        this._window.classList.toggle('hidden');
+    }
+
+    _addHandlerShowWindow() {
+        this._btnOpen.addEventListener('click', this._toggleWindow.bind(this));
+    }
+
+    _addHandlerHideWindow() {
+        this._btnClose.addEventListener('click', this._toggleWindow.bind(this));
+        this._overlay.addEventListener('click', this._toggleWindow.bind(this));
+    }
 
     addHandlerEdit(handler) {
         this._parentElement.addEventListener('click', function (e) {
             const btn = e.target.closest('.btn--edit');
             if (!btn) return;
+
+            this._toggleWindow();
 
             const recipeId = this._data.id;
             if (!recipeId) throw new Error('Recipe ID is missing');

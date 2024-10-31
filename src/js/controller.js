@@ -102,6 +102,7 @@ const controlBookmarks = function () {
 const controlAddRecipe = async function (newRecipe) {
     try {
         recipeView.renderSpinner();
+
         await model.uploadRecipe(newRecipe); // This should internally call AJAX
 
         recipeView.render(model.state.recipe);
@@ -146,13 +147,33 @@ const controlRemoveRecipe = async function (recipeId) {
 
 const controlEditRecipe = async function (recipeId) {
     try {
-        const recipe = model.state.recipe;
-        if (!recipe) throw new Error('Recipe not found');
+        recipeView.renderSpinner();
 
-        recipeView.populateEditModal(recipe); // call the method on `recipeView`
+        // Retrieve the recipe data
+        const recipeData = model.getRecipeById(recipeId);
+        if (!recipeData) throw new Error('Recipe not found');
+
+        // Populate form with current recipe data for editing
+        recipeView.populateForm(recipeData);
+
+        // Wait for form submission and update recipe on submit
+        recipeView.addHandlerFormSubmit(async (updatedRecipe) => {
+            await model.updateRecipe(recipeId, updatedRecipe);
+
+            recipeView.render(model.state.recipe);
+            bookmarksView.render(model.state.bookmarks);
+            window.history.pushState(null, '', `#${model.state.recipe.id}`);
+            recipeView.showPopupMessage();
+
+            setTimeout(() => {
+                recipeView._toggleWindow();
+            }, MODAL_CLOSE_SEC * 1000);
+        });
     } catch (err) {
         console.error('Error editing recipe:', err);
-        recipeView.renderError(err.message); // ensure `renderError` exists in `recipeView`
+        recipeView.renderError(err.message);
+    } finally {
+        recipeView.clearSpinner();
     }
 };
 
@@ -164,13 +185,7 @@ const init = function () {
     searchView.addHandlerSearch(controlSearchResults);
     paginationView.addHanlderClick(controlPagination);
     bookmarksView.addHandlerBookmarks(controlBookmarks);
-    addRecipeView.addHandlerUpload(data => {
-        if (data.id) {
-            controlEditRecipe(data);
-        } else {
-            controlAddRecipe(data);
-        }
-    });
+    addRecipeView.addHandlerUpload(controlAddRecipe);
     recipeView.addHandlerRemoveRecipe(controlRemoveRecipe);
     recipeView.addHandlerEdit(controlEditRecipe);
 
