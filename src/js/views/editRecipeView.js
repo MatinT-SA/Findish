@@ -1,9 +1,9 @@
 import icons from 'url:../../img/icons.svg';
 import View from "./View.js";
 
-class AddRecipeView extends View {
+class editRecipeView extends View {
     _parentElement = document.querySelector('.upload');
-    _successMessage = 'Recipe was successfully uploaded';
+    _successMessage = 'Recipe was successfully edited';
     _overlay = document.querySelector('.overlay');
     _window = document.querySelector('.add-recipe-window');
     _btnOpen = document.querySelector('.nav__btn--add-recipe');
@@ -29,12 +29,40 @@ class AddRecipeView extends View {
         this._overlay.addEventListener('click', this._toggleWindow.bind(this));
     }
 
-    addHandlerUpload(handler) {
+    renderForm(recipe = {}) {
+        const form = this._parentElement;
+        // Populate the form fields with recipe data
+        form.title.value = recipe.title || '';
+        form.sourceUrl.value = recipe.sourceUrl || '';
+        form.image.value = recipe.image || '';
+        form.publisher.value = recipe.publisher || '';
+        form.cookingTime.value = recipe.cookingTime || '';
+        form.servings.value = recipe.servings || '';
+
+        // Populate ingredients
+        for (let i = 1; i <= 6; i++) {
+            form[`ingredient-${i}`].value = recipe[`ingredient-${i}`] || '';
+        }
+
+        this._toggleWindow(); // Show the window
+    }
+
+    addHandlerEditView(handler) {
         this._parentElement.addEventListener('submit', function (e) {
             e.preventDefault();
             const dataArray = [...new FormData(this)];
             const data = Object.fromEntries(dataArray);
+
+            // Set the recipe ID in the data object
+            const recipeId = this.dataset.recipeId;
+            if (recipeId) {
+                data.id = recipeId;
+            }
+
+            // Log the data being sent
             console.log('Data to be sent:', data);
+
+            // Call the handler function with the data object
             handler(data);
         });
     }
@@ -42,4 +70,4 @@ class AddRecipeView extends View {
     _generateMarkup() { }
 }
 
-export default new AddRecipeView();
+export default new editRecipeView();
