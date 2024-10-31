@@ -65,18 +65,6 @@ class AddRecipeView extends View {
         this._toggleWindow(); // Show the window
     }
 
-    // Generate HTML for ingredient inputs
-    _generateIngredientInputs(ingredients = {}) {
-        let ingredientInputs = '';
-        for (let i = 1; i <= 6; i++) {
-            ingredientInputs += `
-                <label>Ingredient ${i}</label>
-                <input value="${ingredients[`ingredient-${i}`] || ''}" type="text" name="ingredient-${i}"
-                    placeholder="Format: 'Quantity,Unit,Description'" ${i === 1 ? 'required' : ''} />
-            `;
-        }
-        return ingredientInputs;
-    }
 
     _generateMarkup() { }
 }

@@ -58,7 +58,6 @@ class RecipeView extends View {
         modal.dataset.recipeId = recipe.id;
     }
 
-
     addHandlerRemoveRecipe(handler) {
         this._parentElement.addEventListener('click', function (e) {
             const btn = e.target.closest('.btn--delete');

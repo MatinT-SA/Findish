@@ -203,7 +203,6 @@ export const getRecipeById = function (recipeId) {
 
 export const updateRecipe = async function (recipeId, updatedRecipe) {
     try {
-        console.log('Updating recipe with data:', updatedRecipe);
         const ingredients = extractIngredients(updatedRecipe); // Use the utility function
 
         const recipe = {

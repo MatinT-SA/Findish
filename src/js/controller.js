@@ -144,7 +144,6 @@ const controlRemoveRecipe = async function (recipeId) {
     }
 };
 
-
 const controlEditRecipe = async function (recipeId) {
     try {
         recipeView.renderSpinner();
@@ -154,10 +153,10 @@ const controlEditRecipe = async function (recipeId) {
         if (!recipeData) throw new Error('Recipe not found');
 
         // Populate form with current recipe data for editing
-        recipeView.populateForm(recipeData);
+        recipeView.populateEditModal(recipeData); // Make sure this passes the correct data
 
         // Wait for form submission and update recipe on submit
-        recipeView.addHandlerFormSubmit(async (updatedRecipe) => {
+        addRecipeView.addHandlerUpload(async (updatedRecipe) => {
             await model.updateRecipe(recipeId, updatedRecipe);
 
             recipeView.render(model.state.recipe);
@@ -176,7 +175,6 @@ const controlEditRecipe = async function (recipeId) {
         recipeView.clearSpinner();
     }
 };
-
 
 const init = function () {
     recipeView.addHandlerRender(controlRecipes);
