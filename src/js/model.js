@@ -132,7 +132,7 @@ const clearBookmarks = function () {
     localStorage.clear('bookmarks');
 }
 
-clearBookmarks();
+// clearBookmarks();
 
 const extractIngredients = (recipeData) => {
     return Object.entries(recipeData)
@@ -197,7 +197,10 @@ export const removeRecipe = async function (recipeId) {
     }
 };
 
-// Assuming your model looks something like this
+export const getRecipeById = function (recipeId) {
+    return state.bookmarks.find(recipe => recipe.id === recipeId) || null;
+};
+
 export const updateRecipe = async function (recipeId, updatedRecipe) {
     try {
         console.log('Updating recipe with data:', updatedRecipe);

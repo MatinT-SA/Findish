@@ -30,6 +30,8 @@ class RecipeView extends View {
             const btn = e.target.closest('.btn--edit');
             if (!btn) return;
 
+            this._toggleWindow();
+
             const recipeId = this._data.id;
             if (!recipeId) throw new Error('Recipe ID is missing');
 

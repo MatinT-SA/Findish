@@ -145,29 +145,38 @@ const controlRemoveRecipe = async function (recipeId) {
 };
 
 
-const controlEditRecipe = async function (recipeId, newRecipe) {
+const controlEditRecipe = async function (recipeId) {
     try {
         recipeView.renderSpinner();
 
-        // Pass the recipeId and the newRecipe data to the upload function
-        await model.updateRecipe(recipeId, newRecipe); // Use the correct function to update
+        // Retrieve the recipe data
+        const recipeData = model.getRecipeById(recipeId);
+        if (!recipeData) throw new Error('Recipe not found');
 
-        recipeView.render(model.state.recipe); // Render the updated recipe
-        bookmarksView.render(model.state.bookmarks); // Update bookmarks if necessary
-        window.history.pushState(null, '', `#${model.state.recipe.id}`); // Update the URL
+        // Populate form with current recipe data for editing
+        recipeView.populateForm(recipeData);
 
-        recipeView.showPopupMessage() // Show a message indicating success
+        // Wait for form submission and update recipe on submit
+        recipeView.addHandlerFormSubmit(async (updatedRecipe) => {
+            await model.updateRecipe(recipeId, updatedRecipe);
 
-        setTimeout(() => {
-            recipeView._toggleWindow(); // Close the modal after a delay
-        }, MODAL_CLOSE_SEC * 1000);
+            recipeView.render(model.state.recipe);
+            bookmarksView.render(model.state.bookmarks);
+            window.history.pushState(null, '', `#${model.state.recipe.id}`);
+            recipeView.showPopupMessage();
+
+            setTimeout(() => {
+                recipeView._toggleWindow();
+            }, MODAL_CLOSE_SEC * 1000);
+        });
     } catch (err) {
         console.error('Error editing recipe:', err);
-        recipeView.renderError(err.message); // Ensure renderError exists in recipeView
+        recipeView.renderError(err.message);
     } finally {
-        recipeView.clearSpinner(); // Clear spinner after completion
+        recipeView.clearSpinner();
     }
 };
+
 
 const init = function () {
     recipeView.addHandlerRender(controlRecipes);
