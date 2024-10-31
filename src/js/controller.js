@@ -159,8 +159,8 @@ const controlEditRecipe = async function (recipeId) {
         addRecipeView.addHandlerUpload(async (updatedRecipe) => {
             await model.updateRecipe(recipeId, updatedRecipe);
 
-            recipeView.render(model.state.recipe);
-            bookmarksView.render(model.state.bookmarks);
+            recipeView.update(model.state.recipe);
+            bookmarksView.update(model.state.bookmarks);
             window.history.pushState(null, '', `#${model.state.recipe.id}`);
             recipeView.showPopupMessage();
 
@@ -173,6 +173,7 @@ const controlEditRecipe = async function (recipeId) {
         recipeView.renderError(err.message);
     } finally {
         recipeView.clearSpinner();
+        recipeView.render(model.state.recipe);
     }
 };
 
