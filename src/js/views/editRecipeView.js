@@ -64,9 +64,6 @@ class editRecipeView extends View {
                 data.id = recipeId;
             }
 
-            // Log the data being sent
-            console.log('Data to be sent:', data);
-
             // Call the handler function with the data object
             handler(data);
         });
