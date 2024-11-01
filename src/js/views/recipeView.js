@@ -1,6 +1,7 @@
 import icons from 'url:../../img/icons.svg';
 import fracty from 'fracty';
 import View from './View';
+import editRecipeView from './editRecipeView';
 
 class RecipeView extends View {
     _parentElement = document.querySelector('.recipe');
@@ -11,26 +12,12 @@ class RecipeView extends View {
     _errorMessage = 'Couldn\'t find the recipe. Try another one';
     _successMessage = 'Recipe was successfully updated';
 
-    _toggleWindow() {
-        this._overlay.classList.toggle('hidden');
-        this._window.classList.toggle('hidden');
-    }
-
-    _addHandlerShowWindow() {
-        this._btnOpen.addEventListener('click', this._toggleWindow.bind(this));
-    }
-
-    _addHandlerHideWindow() {
-        this._btnClose.addEventListener('click', this._toggleWindow.bind(this));
-        this._overlay.addEventListener('click', this._toggleWindow.bind(this));
-    }
-
     addHandlerEdit(handler) {
         this._parentElement.addEventListener('click', function (e) {
             const btn = e.target.closest('.btn--edit');
             if (!btn) return;
 
-            this._toggleWindow();
+            editRecipeView._toggleWindow();
 
             const recipeId = this._data.id;
             if (!recipeId) throw new Error('Recipe ID is missing');
@@ -57,7 +44,6 @@ class RecipeView extends View {
 
         modal.dataset.recipeId = recipe.id;
     }
-
 
     addHandlerRemoveRecipe(handler) {
         this._parentElement.addEventListener('click', function (e) {
