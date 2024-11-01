@@ -2,12 +2,12 @@ import icons from 'url:../../img/icons.svg';
 import View from "./View.js";
 
 class editRecipeView extends View {
-    _parentElement = document.querySelector('.upload');
+    _parentElement = document.querySelector('.upload--edit');
     _successMessage = 'Recipe was successfully edited';
-    _overlay = document.querySelector('.overlay');
-    _window = document.querySelector('.add-recipe-window');
-    _btnOpen = document.querySelector('.nav__btn--add-recipe');
-    _btnClose = document.querySelector('.btn--close-modal');
+    _overlay = document.querySelector('.edit-overlay');
+    _window = document.querySelector('.edit-recipe-window');
+    // _btnOpen = document.querySelector('.nav__btn--add-recipe');
+    _btnClose = document.querySelector('.btn--close-edit-modal');
 
     constructor() {
         super();
@@ -21,7 +21,12 @@ class editRecipeView extends View {
     }
 
     _addHandlerShowWindow() {
-        this._btnOpen.addEventListener('click', this._toggleWindow.bind(this));
+        document.querySelector('.recipe').addEventListener('click', (e) => {
+            const btn = e.target.closest('.btn--edit');
+            if (!btn) return;
+
+            this._toggleWindow();
+        });
     }
 
     _addHandlerHideWindow() {

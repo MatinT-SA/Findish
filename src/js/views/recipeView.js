@@ -1,6 +1,7 @@
 import icons from 'url:../../img/icons.svg';
 import fracty from 'fracty';
 import View from './View';
+import editRecipeView from './editRecipeView';
 
 class RecipeView extends View {
     _parentElement = document.querySelector('.recipe');
@@ -16,7 +17,7 @@ class RecipeView extends View {
             const btn = e.target.closest('.btn--edit');
             if (!btn) return;
 
-            this._toggleWindow();
+            editRecipeView._toggleWindow();
 
             const recipeId = this._data.id;
             if (!recipeId) throw new Error('Recipe ID is missing');

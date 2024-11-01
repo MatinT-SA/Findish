@@ -2,12 +2,12 @@ import icons from 'url:../../img/icons.svg';
 import View from "./View.js";
 
 class AddRecipeView extends View {
-    _parentElement = document.querySelector('.upload');
+    _parentElement = document.querySelector('.upload--add');
     _successMessage = 'Recipe was successfully uploaded';
-    _overlay = document.querySelector('.overlay');
+    _overlay = document.querySelector('.add-overlay');
     _window = document.querySelector('.add-recipe-window');
     _btnOpen = document.querySelector('.nav__btn--add-recipe');
-    _btnClose = document.querySelector('.btn--close-modal');
+    _btnClose = document.querySelector('.btn--close-add-modal');
 
     constructor() {
         super();

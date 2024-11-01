@@ -148,7 +148,7 @@ const controlRemoveRecipe = async function (recipeId) {
     }
 };
 
-const controlEditRecipe = async function (recipeId) {
+const controlEditRecipe = function (recipeId) {
     try {
         recipeView.renderSpinner();
 
@@ -157,25 +157,31 @@ const controlEditRecipe = async function (recipeId) {
         if (!recipeData) throw new Error('Recipe not found');
 
         // Populate form with current recipe data for editing
-        editRecipeView.renderForm(recipeData); // Ensure this method is called to populate the form
+        editRecipeView.renderForm(recipeData);
 
-        // Wait for form submission and update recipe on submit
-        editRecipeView.addHandlerEditView(async (updatedRecipe) => {
-            await model.updateRecipe(recipeId, updatedRecipe); // Update the recipe in the model
-
-            recipeView.render(model.state.recipe); // Re-render the updated recipe
-            bookmarksView.render(model.state.bookmarks); // Update bookmarks view
-            recipeView.showPopupMessage('Recipe was successfully updated!');
-
-            setTimeout(() => {
-                editRecipeView._toggleWindow(); // Close the modal after a delay
-            }, MODAL_CLOSE_SEC * 1000);
-        });
     } catch (err) {
         console.error('Error editing recipe:', err);
         recipeView.renderError(err.message);
     } finally {
         recipeView.clearSpinner();
+    }
+};
+
+const controlEditRecipeSubmission = async function (updatedRecipe) {
+    try {
+        await model.updateRecipe(updatedRecipe.id, updatedRecipe); // Update the recipe in the model
+
+        recipeView.render(model.state.recipe); // Re-render the updated recipe
+        bookmarksView.render(model.state.bookmarks); // Update bookmarks view
+        recipeView.showPopupMessage('Recipe was successfully updated!');
+
+        setTimeout(() => {
+            editRecipeView._toggleWindow(); // Close the modal after a delay
+        }, MODAL_CLOSE_SEC * 1000);
+
+    } catch (err) {
+        console.error('Error updating recipe:', err);
+        recipeView.renderError(err.message);
     }
 };
 
@@ -190,6 +196,7 @@ const init = function () {
     addRecipeView.addHandlerUpload(controlAddRecipe);
     recipeView.addHandlerRemoveRecipe(controlRemoveRecipe);
     recipeView.addHandlerEdit(controlEditRecipe);
+    editRecipeView.addHandlerEditView(controlEditRecipeSubmission);
 
     window.addEventListener('resize', controlResize);
 }
