@@ -34,7 +34,6 @@ class AddRecipeView extends View {
             e.preventDefault();
             const dataArray = [...new FormData(this)];
             const data = Object.fromEntries(dataArray);
-            console.log('Data to be sent:', data);
             handler(data);
         });
     }
