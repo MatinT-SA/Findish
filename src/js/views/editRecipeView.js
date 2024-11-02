@@ -36,6 +36,8 @@ class editRecipeView extends View {
 
     renderForm(recipe = {}) {
         const form = this._parentElement;
+        form.setAttribute('data-recipe-id', recipe.id);
+
         // Populate the form fields with recipe data
         form.title.value = recipe.title || '';
         form.sourceUrl.value = recipe.sourceUrl || '';
@@ -45,9 +47,12 @@ class editRecipeView extends View {
         form.servings.value = recipe.servings || '';
 
         // Populate ingredients
-        for (let i = 1; i <= 6; i++) {
-            form[`ingredient-${i}`].value = recipe[`ingredient-${i}`] || '';
-        }
+        recipe.ingredients.forEach((ing, i) => {
+            const formField = form[`ingredient-${i + 1}`];
+            if (formField) {
+                formField.value = `${ing.quantity || ''},${ing.unit || ''},${ing.description || ''}`;
+            }
+        });
 
         this._toggleWindow(); // Show the window
     }
@@ -64,11 +69,8 @@ class editRecipeView extends View {
                 data.id = recipeId;
             }
 
-            // Log the data being sent
-            console.log('Data to be sent:', data);
-
             // Call the handler function with the data object
-            handler(data);
+            handler(recipeId, data);
         });
     }
 

@@ -150,26 +150,24 @@ const controlRemoveRecipe = async function (recipeId) {
 
 const controlEditRecipe = function (recipeId) {
     try {
-        recipeView.renderSpinner();
-
         // Retrieve the recipe data
         const recipeData = model.getRecipeById(recipeId);
         if (!recipeData) throw new Error('Recipe not found');
 
         // Populate form with current recipe data for editing
         editRecipeView.renderForm(recipeData);
-
     } catch (err) {
         console.error('Error editing recipe:', err);
         recipeView.renderError(err.message);
     } finally {
         recipeView.clearSpinner();
+        recipeView.render(model.state.recipe);
     }
 };
 
-const controlEditRecipeSubmission = async function (updatedRecipe) {
+const controlEditRecipeSubmission = async function (recipeId, updatedRecipeData) {
     try {
-        await model.updateRecipe(updatedRecipe.id, updatedRecipe); // Update the recipe in the model
+        await model.updateRecipe(recipeId, updatedRecipeData); // Update the recipe in the model
 
         recipeView.render(model.state.recipe); // Re-render the updated recipe
         bookmarksView.render(model.state.bookmarks); // Update bookmarks view
