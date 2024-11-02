@@ -134,31 +134,27 @@ const clearBookmarks = function () {
 
 // clearBookmarks();
 
-const extractIngredients = (recipeData) => {
-    return Object.entries(recipeData)
-        .filter(entry => entry[0].startsWith('ingredient') && entry[1] !== '')
-        .map(ing => {
-            const ingArr = ing[1].split(',').map(el => el.trim());
-            if (ingArr.length !== 3) {
-                throw new Error('Wrong ingredient format! Please use the correct format');
-            };
-
-            const [quantity, unit, description] = ingArr;
-            return { quantity: quantity ? +quantity : null, unit, description };
-        });
-};
-
 export const uploadRecipe = async function (newRecipe) {
     try {
-        const ingredients = extractIngredients(newRecipe); // Use the utility function
+        const ingredients = Object.entries(newRecipe)
+            .filter(entry => entry[0].startsWith('ingredient') && entry[1] !== '')
+            .map(ing => {
+                const ingArr = ing[1].split(',').map(el => el.trim());
+                if (ingArr.length !== 3) {
+                    throw new Error('Wrong ingredient format! Please use the correct format');
+                };
+
+                const [quantity, unit, description] = ingArr;
+                return { quantity: quantity ? +quantity : null, unit, description };
+            });
 
         const recipe = {
             title: newRecipe.title,
-            source_url: newRecipe.sourceUrl, // Check if sourceUrl is set correctly
-            image_url: newRecipe.image, // Check if image is set correctly
-            publisher: newRecipe.publisher, // Check if publisher is set correctly
-            cooking_time: +newRecipe.cookingTime, // Ensure this is being converted to a number
-            servings: +newRecipe.servings, // Ensure this is being converted to a number
+            source_url: newRecipe.sourceUrl,
+            image_url: newRecipe.image,
+            publisher: newRecipe.publisher,
+            cooking_time: +newRecipe.cookingTime,
+            servings: +newRecipe.servings,
             ingredients,
         };
 
@@ -172,7 +168,7 @@ export const uploadRecipe = async function (newRecipe) {
 
 export const removeRecipe = async function (recipeId) {
     try {
-        // Send DELETE request to the server to remove the recipe
+        // Send DELETE request to the server
         await AJAX(`${API_URL}/${recipeId}?key=${API_KEY}`, undefined, 'DELETE');
 
         // Remove the recipe from local state
@@ -180,7 +176,7 @@ export const removeRecipe = async function (recipeId) {
             state.recipe = null;
         }
 
-        // Also remove from bookmarks if it exists there
+        // remove from bookmarks if it exists there
         state.bookmarks = state.bookmarks.filter(bookmark => bookmark.id !== recipeId);
 
         // Update bookmarks in local storage if necessary
@@ -189,36 +185,9 @@ export const removeRecipe = async function (recipeId) {
         // Return a success indicator
         return true;
     } catch (error) {
-        // Handle error gracefully without throwing
         if (error.message.includes('404')) {
             return false;
         }
         return false;
-    }
-};
-
-export const getRecipeById = function (recipeId) {
-    return state.bookmarks.find(recipe => recipe.id === recipeId) || null;
-};
-
-export const updateRecipe = async function (recipeId, updatedRecipe) {
-    try {
-        const ingredients = extractIngredients(updatedRecipe); // Use the utility function
-
-        const recipe = {
-            title: updatedRecipe.title,
-            source_url: updatedRecipe.sourceUrl, // Check if sourceUrl is set correctly
-            image_url: updatedRecipe.image, // Check if image is set correctly
-            publisher: updatedRecipe.publisher, // Check if publisher is set correctly
-            cooking_time: +updatedRecipe.cookingTime, // Ensure this is being converted to a number
-            servings: +updatedRecipe.servings, // Ensure this is being converted to a number
-            ingredients,
-        };
-
-        const data = await AJAX(`${API_URL}/${recipeId}?key=${API_KEY}`, recipe, 'PUT');
-        // Update the state with the new data
-        state.recipe = data;
-    } catch (error) {
-        throw error; // Handle the error accordingly
     }
 };

@@ -165,9 +165,9 @@ const controlEditRecipe = function (recipeId) {
     }
 };
 
-const controlEditRecipeSubmission = async function (updatedRecipe) {
+const controlEditRecipeSubmission = async function (recipeId, updatedRecipeData) {
     try {
-        await model.updateRecipe(updatedRecipe.id, updatedRecipe); // Update the recipe in the model
+        await model.updateRecipe(recipeId, updatedRecipeData); // Update the recipe in the model
 
         recipeView.render(model.state.recipe); // Re-render the updated recipe
         bookmarksView.render(model.state.bookmarks); // Update bookmarks view

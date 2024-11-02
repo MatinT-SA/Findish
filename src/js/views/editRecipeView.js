@@ -36,6 +36,7 @@ class editRecipeView extends View {
 
     renderForm(recipe = {}) {
         const form = this._parentElement;
+        form.setAttribute('data-recipe-id', recipe.id);
 
         // Populate the form fields with recipe data
         form.title.value = recipe.title || '';
@@ -69,7 +70,7 @@ class editRecipeView extends View {
             }
 
             // Call the handler function with the data object
-            handler(data);
+            handler(recipeId, data);
         });
     }
 
