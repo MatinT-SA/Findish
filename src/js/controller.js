@@ -6,7 +6,6 @@ import resultsView from './views/resultsView.js';
 import paginationView from './views/paginationView.js';
 import bookmarksView from './views/bookmarksView.js';
 import addRecipeView from './views/addRecipeView.js';
-import editRecipeView from './views/editRecipeView.js';
 
 import 'core-js/stable/index.js';
 import 'regenerator-runtime/runtime';
@@ -106,11 +105,17 @@ const controlAddRecipe = async function (newRecipe) {
 
         // Create a new recipe
         await model.uploadRecipe(newRecipe);
-        addRecipeView.showPopupMessage();
 
         // Render the new recipe
         recipeView.render(model.state.recipe);
+
+        // success message
+        addRecipeView.showPopupMessage();
+
+        // render bookmark view
         bookmarksView.render(model.state.bookmarks);
+
+        // change ID in URL
         window.history.pushState(null, '', `#${model.state.recipe.id}`);
 
         // Close the modal after a short delay
@@ -148,42 +153,6 @@ const controlRemoveRecipe = async function (recipeId) {
     }
 };
 
-const controlEditRecipe = function (recipeId) {
-    try {
-        // Retrieve the recipe data
-        const recipeData = model.getRecipeById(recipeId);
-        if (!recipeData) throw new Error('Recipe not found');
-
-        // Populate form with current recipe data for editing
-        editRecipeView.renderForm(recipeData);
-    } catch (err) {
-        console.error('Error editing recipe:', err);
-        recipeView.renderError(err.message);
-    } finally {
-        recipeView.clearSpinner();
-        recipeView.render(model.state.recipe);
-    }
-};
-
-const controlEditRecipeSubmission = async function (recipeId, updatedRecipeData) {
-    try {
-        await model.updateRecipe(recipeId, updatedRecipeData); // Update the recipe in the model
-
-        recipeView.render(model.state.recipe); // Re-render the updated recipe
-        bookmarksView.render(model.state.bookmarks); // Update bookmarks view
-        recipeView.showPopupMessage('Recipe was successfully updated!');
-
-        setTimeout(() => {
-            editRecipeView._toggleWindow(); // Close the modal after a delay
-        }, MODAL_CLOSE_SEC * 1000);
-
-    } catch (err) {
-        console.error('Error updating recipe:', err);
-        recipeView.renderError(err.message);
-    }
-};
-
-
 const init = function () {
     recipeView.addHandlerRender(controlRecipes);
     recipeView.addHandlerUpdateServing(controlServings);
@@ -193,8 +162,6 @@ const init = function () {
     bookmarksView.addHandlerBookmarks(controlBookmarks);
     addRecipeView.addHandlerUpload(controlAddRecipe);
     recipeView.addHandlerRemoveRecipe(controlRemoveRecipe);
-    recipeView.addHandlerEdit(controlEditRecipe);
-    editRecipeView.addHandlerEditView(controlEditRecipeSubmission);
 
     window.addEventListener('resize', controlResize);
 }
