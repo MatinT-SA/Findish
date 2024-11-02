@@ -1,6 +1,6 @@
 // Variables for reusability
-$color-error: red; // Change this to your desired error color
-$color-success: green; // Change this to your desired success color
+$color-error: red;
+$color-success: green;
 $border-radius: 8px;
 $icon-size: 3rem;
 $message-size: 1.3rem;
@@ -44,7 +44,6 @@ $message-size: 1.3rem;
     }
 }
 
-// Keyframe animation for smooth entry
 @keyframes fadeIn {
     from {
         opacity: 0;
